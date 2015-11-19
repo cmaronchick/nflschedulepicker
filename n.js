@@ -1241,8 +1241,18 @@ function edit_playoffs() {
 	week_lists[17] = [afcWildCard1, afcWildCard2, nfcWildCard1, nfcWildCard2];
 	
 	//Divisional
+	var afcDivisional1 = conferenceRankingObject['AFC'].placements[4].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
+	var afcDivisional2 = conferenceRankingObject['AFC'].placements[3].name + '-' + conferenceRankingObject['AFC'].placements[2].name;
+	var nfcDivisional1 = conferenceRankingObject['NFC'].placements[4].name + '-' + conferenceRankingObject['NFC'].placements[1].name;
+	var nfcDivisional2 = conferenceRankingObject['NFC'].placements[3].name + '-' + conferenceRankingObject['NFC'].placements[2].name;
+	week_lists[18] = [afcDivisional1, afcDivisional2, nfcDivisional1, nfcDivisional2];
 	
 	//Conference Championships
+	var afcChampionship = conferenceRankingObject['AFC'].placements[2].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
+	var nfcChampionship = conferenceRankingObject['NFC'].placements[2].name + '-' + conferenceRankingObject['NFC'].placements[1].name;
+	week_lists[19] = [afcChampionship, nfcChampionship];
 	
 	//Super Bowl
+	var superBowl = conferenceRankingObject['NFC'].placements[1].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
+	week_lists[20] = [superBowl];
 }
