@@ -1,6 +1,6 @@
 ﻿/*
 TODO List:
-* Playoffs (Finished Wild Card)
+* Playoffs (Only high seed right now)
 * Fix SOS Bug
 * Fix SOV Bug
 * Complete Rankings
@@ -248,6 +248,10 @@ var games_cookie_name = "NFL2014",
         "week-15",
         "week-16",
         "week-17",
+		"week-18",
+		"week-19",
+		"week-20",
+		"week-21",
         "help",
         "BUF",
         "MIA",
