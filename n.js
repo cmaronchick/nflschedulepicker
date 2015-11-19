@@ -5,7 +5,6 @@ TODO List:
 * Fix SOV Bug
 * Complete Rankings
 * More Tie-breakers
-* Auto-Update
 */
 
 var isRNFLMarkdown = false;
@@ -1227,7 +1226,9 @@ function markdownExport() {
 
 function update_outcomes() {
 	
-	window.location.href = 'http://0003mg.github.io/nflschedulepicker/?a=-WapWqmmlmamVppZmllqWqlqZVmqZVamWpaqapZaqaqmWllZVFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA_';
+	set_games_from_string('-WapWqmmlmamVppZmllqWqlqZVmqZVamWpaqapZaqaqmWllZVFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA_');
+	set_all_rankings();
+    set_game_cookie(cookie_letters, true);
 }
 
 function edit_playoffs() {
