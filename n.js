@@ -3,6 +3,7 @@ TODO List:
 * Playoffs (Only high seed right now)
 * Fix SOS Bug
 * Fix SOV Bug
+* Fix Playoffs Updating the Standings Bug
 * Complete Rankings
 * More Tie-breakers
 */
