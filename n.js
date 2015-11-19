@@ -1,9 +1,9 @@
 ﻿/*
 TODO List:
-* Playoffs
+* Playoffs (Finished Wild Card)
 * Fix SOS Bug
 * Fix SOV Bug
-* Complete Rankings (Top 6 in Bold)
+* Complete Rankings
 * More Tie-breakers
 * Auto-Update
 */
@@ -1225,11 +1225,23 @@ function markdownExport() {
     $("#markdownField").html(sb.join(''));
 }
 
+function update_outcomes() {
+	
+	window.location.href = 'http://0003mg.github.io/nflschedulepicker/?a=-WapWqmmlmamVppZmllqWqlqZVmqZVamWpaqapZaqaqmWllZVFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA_';
+}
+
 function edit_playoffs() {
 	
+	//Wild Card
 	var afcWildCard1 = conferenceRankingObject['AFC'].placements[5].name + '-' + conferenceRankingObject['AFC'].placements[4].name;
 	var afcWildCard2 = conferenceRankingObject['AFC'].placements[6].name + '-' + conferenceRankingObject['AFC'].placements[3].name;
 	var nfcWildCard1 = conferenceRankingObject['NFC'].placements[5].name + '-' + conferenceRankingObject['NFC'].placements[4].name;
 	var nfcWildCard2 = conferenceRankingObject['NFC'].placements[6].name + '-' + conferenceRankingObject['NFC'].placements[3].name;
 	week_lists[17] = [afcWildCard1, afcWildCard2, nfcWildCard1, nfcWildCard2];
+	
+	//Divisional
+	
+	//Conference Championships
+	
+	//Super Bowl
 }
