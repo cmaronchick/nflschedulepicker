@@ -599,33 +599,53 @@ function wild_ranker(c, b, confName) {
 	var seventhPlace = conf_pick_top(e);
 	document.getElementById(seventhPlace + "-conf-rank").innerHTML = '<font color="red">7</font>';
 	
+	cleanArray(e);
 	e.splice(e.indexOf(seventhPlace), 1); e.push(b[seventhPlace]);
 	var eighthPlace = conf_pick_top(e);
 	document.getElementById(eighthPlace + "-conf-rank").innerHTML = '<font color="red">8</font>';
 	
+	cleanArray(e);
 	e.splice(e.indexOf(eighthPlace), 1); e.push(b[eighthPlace]);
 	var ninthPlace = conf_pick_top(e);
 	document.getElementById(ninthPlace + "-conf-rank").innerHTML = '<font color="red">9</font>';
 	
+	cleanArray(e);
 	e.splice(e.indexOf(ninthPlace), 1); e.push(b[ninthPlace]);
 	var tenthPlace = conf_pick_top(e);
 	document.getElementById(tenthPlace + "-conf-rank").innerHTML = '<font color="red">10</font>';
 	
+	cleanArray(e);
 	e.splice(e.indexOf(tenthPlace), 1); e.push(b[tenthPlace]);
 	var eleventhPlace = conf_pick_top(e);
 	document.getElementById(eleventhPlace + "-conf-rank").innerHTML = '<font color="red">11</font>';
 	
+	cleanArray(e);
 	e.splice(e.indexOf(eleventhPlace), 1); e.push(b[eleventhPlace]);
 	var twelthPlace = conf_pick_top(e);
 	document.getElementById(twelthPlace + "-conf-rank").innerHTML = '<font color="red">12</font>';
 	
+	cleanArray(e);
 	e.splice(e.indexOf(twelthPlace), 1); e.push(b[twelthPlace]);
 	var thirteenthPlace = conf_pick_top(e);
 	document.getElementById(thirteenthPlace + "-conf-rank").innerHTML = '<font color="red">13</font>';
 	
+	cleanArray(e);
 	e.splice(e.indexOf(thirteenthPlace), 1); e.push(b[thirteenthPlace]);
 	var fourteenthPlace = conf_pick_top(e);
 	document.getElementById(fourteenthPlace + "-conf-rank").innerHTML = '<font color="red">14</font>';
+	
+	cleanArray(e);
+	e.splice(e.indexOf(fourteenthPlace), 1); e.push(b[fourteenthPlace]);
+	var fifthteenthPlace = conf_pick_top(e);
+	document.getElementById(fifthteenthPlace + "-conf-rank").innerHTML = '<font color="red">15</font>';
+	
+	cleanArray(e);
+	e.splice(e.indexOf(fifthteenthPlace), 1); e.push(b[fifthteenthPlace]);
+	var sixteenthPlace = conf_pick_top(e);
+	document.getElementById(sixteenthPlace + "-conf-rank").innerHTML = '<font color="red">16</font>';
+}
+
+function cleanArray(e) {
 	
 	for (var i = 0; i < e.length; i++) {
 		if (e[i] == undefined) {         
@@ -633,16 +653,7 @@ function wild_ranker(c, b, confName) {
 		i--;
 		}
 	}
-
-	e.splice(e.indexOf(fourteenthPlace), 1); e.push(b[fourteenthPlace]);
-	var fifthteenthPlace = conf_pick_top(e);
-	document.getElementById(fifthteenthPlace + "-conf-rank").innerHTML = '<font color="red">15</font>';
-	
-	e.splice(e.indexOf(fifthteenthPlace), 1); e.push(b[fifthteenthPlace]);
-	var sixteenthPlace = conf_pick_top(e);
-	document.getElementById(sixteenthPlace + "-conf-rank").innerHTML = '<font color="red">16</font>';
-	
-	
+	return e;
 }
 
 function exchange(d, c, b) {
