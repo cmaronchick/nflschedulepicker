@@ -627,15 +627,21 @@ function wild_ranker(c, b, confName) {
 	var fourteenthPlace = conf_pick_top(e);
 	document.getElementById(fourteenthPlace + "-conf-rank").innerHTML = '<font color="red">14</font>';
 	
-	/*
+	for (var i = 0; i < e.length; i++) {
+		if (e[i] == undefined) {         
+			e.splice(i, 1);
+		i--;
+		}
+	}
+
 	e.splice(e.indexOf(fourteenthPlace), 1); e.push(b[fourteenthPlace]);
 	var fifthteenthPlace = conf_pick_top(e);
-	document.getElementById(fifthteenthPlace + "-conf-rank").innerHTML = '15';
+	document.getElementById(fifthteenthPlace + "-conf-rank").innerHTML = '<font color="red">15</font>';
 	
 	e.splice(e.indexOf(fifthteenthPlace), 1); e.push(b[fifthteenthPlace]);
 	var sixteenthPlace = conf_pick_top(e);
-	document.getElementById(sixteenthPlace + "-conf-rank").innerHTML = '16';
-	*/
+	document.getElementById(sixteenthPlace + "-conf-rank").innerHTML = '<font color="red">16</font>';
+	
 	
 }
 
