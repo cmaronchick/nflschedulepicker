@@ -588,11 +588,55 @@ function wild_ranker(c, b, confName) {
         d;
 
     a = conf_pick_top(e);
-    document.getElementById(a + "-conf-rank").innerHTML = 5;
+    document.getElementById(a + "-conf-rank").innerHTML = '<font color="green"><b>5</b></font>';
     e.splice(e.indexOf(a), 1); e.push(b[a]); d = conf_pick_top(e);
-    document.getElementById(d + "-conf-rank").innerHTML = 6;
+    document.getElementById(d + "-conf-rank").innerHTML = '<font color="green"><b>6</b></font>';
     conferenceRankingObject[confName].placements[5] = { name: a, record: all_record[a] };
     conferenceRankingObject[confName].placements[6] = { name: d, record: all_record[d] };
+	
+	//Non-Playoff Teams
+	e.splice(e.indexOf(d), 1); e.push(b[d]);
+	var seventhPlace = conf_pick_top(e);
+	document.getElementById(seventhPlace + "-conf-rank").innerHTML = '<font color="red">7</font>';
+	
+	e.splice(e.indexOf(seventhPlace), 1); e.push(b[seventhPlace]);
+	var eighthPlace = conf_pick_top(e);
+	document.getElementById(eighthPlace + "-conf-rank").innerHTML = '<font color="red">8</font>';
+	
+	e.splice(e.indexOf(eighthPlace), 1); e.push(b[eighthPlace]);
+	var ninthPlace = conf_pick_top(e);
+	document.getElementById(ninthPlace + "-conf-rank").innerHTML = '<font color="red">9</font>';
+	
+	e.splice(e.indexOf(ninthPlace), 1); e.push(b[ninthPlace]);
+	var tenthPlace = conf_pick_top(e);
+	document.getElementById(tenthPlace + "-conf-rank").innerHTML = '<font color="red">10</font>';
+	
+	e.splice(e.indexOf(tenthPlace), 1); e.push(b[tenthPlace]);
+	var eleventhPlace = conf_pick_top(e);
+	document.getElementById(eleventhPlace + "-conf-rank").innerHTML = '<font color="red">11</font>';
+	
+	e.splice(e.indexOf(eleventhPlace), 1); e.push(b[eleventhPlace]);
+	var twelthPlace = conf_pick_top(e);
+	document.getElementById(twelthPlace + "-conf-rank").innerHTML = '<font color="red">12</font>';
+	
+	e.splice(e.indexOf(twelthPlace), 1); e.push(b[twelthPlace]);
+	var thirteenthPlace = conf_pick_top(e);
+	document.getElementById(thirteenthPlace + "-conf-rank").innerHTML = '<font color="red">13</font>';
+	
+	e.splice(e.indexOf(thirteenthPlace), 1); e.push(b[thirteenthPlace]);
+	var fourteenthPlace = conf_pick_top(e);
+	document.getElementById(fourteenthPlace + "-conf-rank").innerHTML = '<font color="red">14</font>';
+	
+	/*
+	e.splice(e.indexOf(fourteenthPlace), 1); e.push(b[fourteenthPlace]);
+	var fifthteenthPlace = conf_pick_top(e);
+	document.getElementById(fifthteenthPlace + "-conf-rank").innerHTML = '15';
+	
+	e.splice(e.indexOf(fifthteenthPlace), 1); e.push(b[fifthteenthPlace]);
+	var sixteenthPlace = conf_pick_top(e);
+	document.getElementById(sixteenthPlace + "-conf-rank").innerHTML = '16';
+	*/
+	
 }
 
 function exchange(d, c, b) {
@@ -638,14 +682,14 @@ function conf_ranker(c, confName) {
         a;
 
     b = conf_pick_top(e);
-    document.getElementById(b + "-conf-rank").innerHTML = 1;
+    document.getElementById(b + "-conf-rank").innerHTML = '<font color="green"><b>1</b></font>';
     e.splice(e.indexOf(b), 1);
     d = conf_pick_top(e);
-    document.getElementById(d + "-conf-rank").innerHTML = 2;
+    document.getElementById(d + "-conf-rank").innerHTML = '<font color="green"><b>2</b></font>';
     e.splice(e.indexOf(d), 1); a = conf_pick_top(e);
-    document.getElementById(a + "-conf-rank").innerHTML = 3;
+    document.getElementById(a + "-conf-rank").innerHTML = '<font color="green"><b>3</b></font>';
     e.splice(e.indexOf(a), 1);
-    document.getElementById(e[0] + "-conf-rank").innerHTML = 4;
+    document.getElementById(e[0] + "-conf-rank").innerHTML = '<font color="green"><b>4</b></font>';
     if (confName) {
         conferenceRankingObject[confName] = {
             name: confName,
@@ -662,7 +706,8 @@ function div_ranker(b, d, c, f) {
     var h = division_teams[b].slice(0),
         e,
         g,
-        a;
+        a,
+		l;
 
     e = division_pick_top(h);
     document.getElementById(e + "-div-rank").innerHTML = 1;
@@ -678,6 +723,7 @@ function div_ranker(b, d, c, f) {
     h.splice(h.indexOf(a), 1); f[g] = a;
     document.getElementById(h[0] + "-div-rank").innerHTML = 4;
     document.getElementById(h[0] + "-conf-rank").innerHTML = "";
+	f[a] = h[0];
     sort_div(b, d);
     return e
 }
