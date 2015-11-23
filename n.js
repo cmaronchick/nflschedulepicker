@@ -75,7 +75,7 @@ var games_cookie_name = "NFL2014",
     + "T          NM"    //09
     + "T           NM"    //10
     + "T           NM"   //11
-    + "T             NM"  //12
+    + "TTT           NM"  //12
     + "T             NM" //13
     + "T             NM" //14
     + "TZ            NM" //15
@@ -84,7 +84,7 @@ var games_cookie_name = "NFL2014",
 	+ "    " //WC
 	+ "    " //DR
 	+ "  " //CC
-	+ " " //SB
+	+ "N" //SB
     ,day_explaination = { T: "Thursday game", N: "Sunday Night game", M: "Monday Night game", U: "@ London, UK", C: "@ Toronto, Canada", " ": "Sunday game", Z:"Saturday game" },
     bye_lookup = {
         4: "NE TEN",
@@ -1176,8 +1176,7 @@ function week_game_table(g, b) {
             case "M":
                 k += e;
                 break;
-            //default: alert("OUCH " + i);
-			default: a += e;
+            default: alert("OUCH " + i);
                 break
         }
     }
@@ -1297,6 +1296,14 @@ function edit_playoffs() {
 	var nfcWildCard1 = conferenceRankingObject['NFC'].placements[5].name + '-' + conferenceRankingObject['NFC'].placements[4].name;
 	var nfcWildCard2 = conferenceRankingObject['NFC'].placements[6].name + '-' + conferenceRankingObject['NFC'].placements[3].name;
 	week_lists[17] = [afcWildCard1, afcWildCard2, nfcWildCard1, nfcWildCard2];
+	game_position[afcWildCard1] = 256;
+	game_position[afcWildCard2] = 257;
+	game_position[nfcWildCard1] = 258;	
+	game_position[nfcWildCard2] = 259;
+	game_states[afcWildCard1] = 0;
+	game_states[afcWildCard2] = 0;
+	game_states[nfcWildCard1] = 0;	
+	game_states[nfcWildCard2] = 0;
 	
 	//Divisional
 	var afcDivisional1 = conferenceRankingObject['AFC'].placements[4].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
@@ -1304,13 +1311,27 @@ function edit_playoffs() {
 	var nfcDivisional1 = conferenceRankingObject['NFC'].placements[4].name + '-' + conferenceRankingObject['NFC'].placements[1].name;
 	var nfcDivisional2 = conferenceRankingObject['NFC'].placements[3].name + '-' + conferenceRankingObject['NFC'].placements[2].name;
 	week_lists[18] = [afcDivisional1, afcDivisional2, nfcDivisional1, nfcDivisional2];
+	game_position[afcDivisional1] = 260;
+	game_position[afcDivisional2] = 261;
+	game_position[nfcDivisional1] = 262;	
+	game_position[nfcDivisional2] = 263;
+	game_states[afcDivisional1] = 0;
+	game_states[afcDivisional2] = 0;
+	game_states[nfcDivisional1] = 0;	
+	game_states[nfcDivisional2] = 0;
 	
 	//Conference Championships
 	var afcChampionship = conferenceRankingObject['AFC'].placements[2].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
 	var nfcChampionship = conferenceRankingObject['NFC'].placements[2].name + '-' + conferenceRankingObject['NFC'].placements[1].name;
 	week_lists[19] = [afcChampionship, nfcChampionship];
+	game_position[afcChampionship] = 264;
+	game_position[nfcChampionship] = 265;
+	game_states[afcChampionship] = 0;
+	game_states[nfcChampionship] = 0;
 	
 	//Super Bowl
 	var superBowl = conferenceRankingObject['NFC'].placements[1].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
 	week_lists[20] = [superBowl];
+	game_position[superBowl] = 266;
+	game_states[superBowl] = 0;
 }
