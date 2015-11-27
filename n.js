@@ -524,7 +524,6 @@ function wgc(b, a) {
     change_game(b, a);
     set_game_cookie(cookie_letters);
     set_all_rankings();
-	edit_playoffs();
 }
 
 function set_all_rankings() {
@@ -1283,7 +1282,7 @@ function markdownExport() {
 
 function update_outcomes() {
 	
-	set_games_from_string('-WapWqmmlmamVppZmllqWqlqZVmqZVamWpaqapZaqaqmWllZVlmVmaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA_');
+	set_games_from_string('-WapWqmmlmamVppZmllqWqlqZVmqZVamWpaqapZaqaqmWllZVlmVmaaBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ_');
 	set_all_rankings();
     set_game_cookie(cookie_letters, true);
 }
@@ -1298,26 +1297,63 @@ function edit_playoffs() {
 	week_lists[17] = [afcWildCard1, afcWildCard2, nfcWildCard1, nfcWildCard2];
 	game_position[afcWildCard1] = 256;
 	game_position[afcWildCard2] = 257;
-	game_position[nfcWildCard1] = 258;	
+	game_position[nfcWildCard1] = 258;
 	game_position[nfcWildCard2] = 259;
 	game_states[afcWildCard1] = 0;
 	game_states[afcWildCard2] = 0;
-	game_states[nfcWildCard1] = 0;	
+	game_states[nfcWildCard1] = 0;
 	game_states[nfcWildCard2] = 0;
 	
 	//Divisional
-	var afcDivisional1 = conferenceRankingObject['AFC'].placements[4].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
-	var afcDivisional2 = conferenceRankingObject['AFC'].placements[3].name + '-' + conferenceRankingObject['AFC'].placements[2].name;
-	var nfcDivisional1 = conferenceRankingObject['NFC'].placements[4].name + '-' + conferenceRankingObject['NFC'].placements[1].name;
-	var nfcDivisional2 = conferenceRankingObject['NFC'].placements[3].name + '-' + conferenceRankingObject['NFC'].placements[2].name;
+	if(game_states[afcWildCard1] == 1 && game_states[afcWildCard2] == 1) {
+		
+		var afcDivisional1 = conferenceRankingObject['AFC'].placements[5].name + '-' + conferenceRankingObject['AFC'].placements[2].name;
+		var afcDivisional2 = conferenceRankingObject['AFC'].placements[6].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
+	}
+	else if(game_states[afcWildCard1] == 2 && game_states[afcWildCard2] == 1) {
+		
+		var afcDivisional1 = conferenceRankingObject['AFC'].placements[4].name + '-' + conferenceRankingObject['AFC'].placements[2].name;
+		var afcDivisional2 = conferenceRankingObject['AFC'].placements[6].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
+	}
+	else if(game_states[afcWildCard1] == 1 && game_states[afcWildCard2] == 2) {
+		
+		var afcDivisional1 = conferenceRankingObject['AFC'].placements[5].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
+		var afcDivisional2 = conferenceRankingObject['AFC'].placements[3].name + '-' + conferenceRankingObject['AFC'].placements[2].name;
+	}
+	else {
+		
+		var afcDivisional1 = conferenceRankingObject['AFC'].placements[4].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
+		var afcDivisional2 = conferenceRankingObject['AFC'].placements[3].name + '-' + conferenceRankingObject['AFC'].placements[2].name;
+	}
+	
+	if(game_states[nfcWildCard1] == 1 && game_states[nfcWildCard2] == 1) {
+		
+		var nfcDivisional1 = conferenceRankingObject['NFC'].placements[5].name + '-' + conferenceRankingObject['NFC'].placements[2].name;
+		var nfcDivisional2 = conferenceRankingObject['NFC'].placements[6].name + '-' + conferenceRankingObject['NFC'].placements[1].name;
+	}
+	else if(game_states[nfcWildCard1] == 2 && game_states[nfcWildCard2] == 1) {
+		
+		var nfcDivisional1 = conferenceRankingObject['NFC'].placements[4].name + '-' + conferenceRankingObject['NFC'].placements[2].name;
+		var nfcDivisional2 = conferenceRankingObject['NFC'].placements[6].name + '-' + conferenceRankingObject['NFC'].placements[1].name;
+	}
+	else if(game_states[nfcWildCard1] == 1 && game_states[nfcWildCard2] == 2) {
+		
+		var nfcDivisional1 = conferenceRankingObject['NFC'].placements[5].name + '-' + conferenceRankingObject['NFC'].placements[1].name;
+		var nfcDivisional2 = conferenceRankingObject['NFC'].placements[3].name + '-' + conferenceRankingObject['NFC'].placements[2].name;
+	}
+	else {
+		
+		var nfcDivisional1 = conferenceRankingObject['NFC'].placements[4].name + '-' + conferenceRankingObject['NFC'].placements[1].name;
+		var nfcDivisional2 = conferenceRankingObject['NFC'].placements[3].name + '-' + conferenceRankingObject['NFC'].placements[2].name;
+	}
 	week_lists[18] = [afcDivisional1, afcDivisional2, nfcDivisional1, nfcDivisional2];
 	game_position[afcDivisional1] = 260;
 	game_position[afcDivisional2] = 261;
-	game_position[nfcDivisional1] = 262;	
+	game_position[nfcDivisional1] = 262;
 	game_position[nfcDivisional2] = 263;
 	game_states[afcDivisional1] = 0;
 	game_states[afcDivisional2] = 0;
-	game_states[nfcDivisional1] = 0;	
+	game_states[nfcDivisional1] = 0;
 	game_states[nfcDivisional2] = 0;
 	
 	//Conference Championships
