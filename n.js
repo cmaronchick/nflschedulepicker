@@ -56,8 +56,8 @@ var games_cookie_name = "NFL2014",
         /*16*/['SD-OAK', 'WAS-PHI', 'NE-NYJ', 'HOU-TEN', 'CLE-KC', 'IND-MIA', 'JAC-NO', 'SF-DET', 'DAL-BUF', 'CHI-TB', 'CAR-ATL', 'NYG-MIN', 'STL-SEA', 'GB-ARI', 'PIT-BAL', 'CIN-DEN'],
         /*17*/['NYJ-BUF', 'NE-MIA',' TB-CAR', 'NO-ATL', 'BAL-CIN', 'PIT-CLE', 'JAC-HOU', 'TEN-IND', 'OAK-KC', 'WAS-DAL', 'PHI-NYG', 'DET-CHI', 'MIN-GB', 'SD-DEN', 'SEA-ARI', 'STL-SF'],
 		/*WC*/[],
-		/*DR*/[],
-		/*CC*/[],
+		/*DV*/[],
+		/*CH*/[],
 		/*SB*/[]
     ],
     team_week_lists = {},
@@ -1225,26 +1225,175 @@ function update_WLT_html(e, b, a, g, d) {
     }
 }
 
-function modify_game(e, d, b, c, a) { unpicked_games_count -= (c + a); if (a == -1) { modify_SOV(e, d, b, 0, -1); modify_SOV(e, b, d, 0, -1) } else { if (c == -1) { modify_SOV(e, d, b, -1, 0) } } game_work(d, b, all_record, all_pct, "WLT", c, a); modify_SOS(d, c, 0, a); modify_SOS(b, 0, c, a); if (a == 1) { modify_SOV(e, d, b, 0, 1); modify_SOV(e, b, d, 0, 1) } else { if (c == 1) { modify_SOV(e, d, b, 1, 0) } } if (division[d][0] == division[b][0]) { game_work(d, b, conf_record, conf_pct, "conf", c, a); if (division[d] == division[b]) { game_work(d, b, div_record, div_pct, "div", c, a) } } } function game_work(i, h, d, g, b, c, a) { var f = d[i], e = d[h]; f[WINS] += c; e[LOSSES] += c; f[TIES] += a; e[TIES] += a; g[i] = calc_pct(f); g[h] = calc_pct(e); update_WLT_html(i, h, f, e, b) } function modify_SOV(e, j, i, n, r) { var p = foe_lookup[j], o = foe_lookup[i], b, f, a, h, k, d, m, c, g, l, q; c = SOV_record[j]; g = all_record[i]; c[WINS] += g[WINS] * n; c[LOSSES] += g[LOSSES] * n; c[TIES] += g[TIES] * n; l = calc_pct(c); SOV_pct[j] = l; if (active_tab == j) { document.getElementById("team-SOV").innerHTML = l.toFixed(3) } for (f = 0; f < unique_foes; f++) { b = p[f]; a = SOV_record[b]; h = j + "-" + b; k = (h == e) ? undefined : game_states[h]; if (k == HOME_WIN) { a[WINS] += n; a[TIES] += r } d = b + "-" + j; m = (d == e) ? undefined : game_states[d]; if (m == AWAY_WIN) { a[WINS] += n; a[TIES] += r } q = calc_pct(a); SOV_pct[b] = q; if (active_tab == b) { document.getElementById("team-SOV").innerHTML = q.toFixed(3) } if (r === 0) { b = o[f]; a = SOV_record[b]; h = i + "-" + b; k = (h == e) ? undefined : game_states[h]; if (k === HOME_WIN) { a[LOSSES] += n } d = b + "-" + i; m = (d == e) ? undefined : game_states[d]; if (m === AWAY_WIN) { a[LOSSES] += n } q = calc_pct(a); SOV_pct[b] = q; if (active_tab == b) { document.getElementById("team-SOV").innerHTML = q.toFixed(3) } } } } function modify_SOS(e, d, j, a) {
-    var g = division[e], f = foe_lookup[e], c, b, h, i;
+function modify_game(e, d, b, c, a) { 
+	
+	unpicked_games_count -= (c + a); 
+	if (a == -1) { 
+	
+			modify_SOV(e, d, b, 0, -1); 
+			modify_SOV(e, b, d, 0, -1)
+			
+	} else { 
+	
+		if (c == -1) { 
+		
+			modify_SOV(e, d, b, -1, 0) 
+			
+		} 
+	} 
+	
+	game_work(d, b, all_record, all_pct, "WLT", c, a); 
+	modify_SOS(d, c, 0, a); 
+	modify_SOS(b, 0, c, a); 
+	
+	if (a == 1) { 
+	
+		modify_SOV(e, d, b, 0, 1); 
+		modify_SOV(e, b, d, 0, 1) 
+		
+	} else { 
+	
+		if (c == 1) { 
+		
+			modify_SOV(e, d, b, 1, 0) 
+		} 
+	} 
+	
+	if (division[d][0] == division[b][0]) { 
+	
+		game_work(d, b, conf_record, conf_pct, "conf", c, a); 
+		
+		if (division[d] == division[b]) { 
+		
+			game_work(d, b, div_record, div_pct, "div", c, a) 
+		} 
+	} 
+} 
+
+function game_work(i, h, d, g, b, c, a) { 
+
+	var f = d[i], e = d[h]; 
+	f[WINS] += c; 
+	e[LOSSES] += c; 
+	f[TIES] += a; 
+	e[TIES] += a; 
+	g[i] = calc_pct(f); 
+	g[h] = calc_pct(e); 
+	update_WLT_html(i, h, f, e, b) 
+} 
+
+function modify_SOV(e, j, i, n, r) { 
+
+	var p = foe_lookup[j], o = foe_lookup[i], b, f, a, h, k, d, m, c, g, l, q; 
+	c = SOV_record[j]; 
+	g = all_record[i]; 
+	c[WINS] += g[WINS] * n; 
+	c[LOSSES] += g[LOSSES] * n; 
+	c[TIES] += g[TIES] * n; 
+	l = calc_pct(c); 
+	SOV_pct[j] = l; 
+	
+	if (active_tab == j) { 
+	
+		document.getElementById("team-SOV").innerHTML = l.toFixed(3) 
+	} 
+	
+	for (f = 0; f < unique_foes; f++) {
+
+		b = p[f]; a = SOV_record[b]; 
+		
+		var check1 = game_states[(j + '-' + b)];
+		var check2 = game_states[(b + '-' + j)];
+			
+		if((check1 != 0) && (check2 != 0)) {
+		
+			h = j + "-" + b; 
+			k = (h == e) ? undefined : game_states[h]; 
+			
+			if (k == HOME_WIN) { 
+			
+				a[WINS] += n; a[TIES] += r 
+			} 
+			
+			d = b + "-" + j; 
+			m = (d == e) ? undefined : game_states[d]; 
+			
+			if (m == AWAY_WIN) { 
+			
+				a[WINS] += n; 
+				a[TIES] += r 
+			} 
+			
+			q = calc_pct(a); 
+			SOV_pct[b] = q; 
+			
+			if (active_tab == b) { 
+			
+				document.getElementById("team-SOV").innerHTML = q.toFixed(3) 
+			} 
+			
+			if (r === 0) { 
+			
+				b = o[f]; 
+				a = SOV_record[b]; 
+				h = i + "-" + b; 
+				k = (h == e) ? undefined : game_states[h]; 
+				
+				if (k === HOME_WIN) { 
+				
+					a[LOSSES] += n 
+				} 
+				
+				d = b + "-" + i; 
+				m = (d == e) ? undefined : game_states[d]; 
+				
+				if (m === AWAY_WIN) { 
+				
+					a[LOSSES] += n 
+				} 
+				
+				q = calc_pct(a); 
+				SOV_pct[b] = q; 
+				
+				if (active_tab == b) { 
+				
+					document.getElementById("team-SOV").innerHTML = q.toFixed(3) 
+				} 
+			}
+		} 
+	} 
+}
+
+function modify_SOS(e, d, j, a) {
+	
+	var g = division[e], f = foe_lookup[e], c, b, h, i;
+	
     for (i = unique_foes; i--;) {
-        c = f[i];
-        b = (division[c] == g) ? 2 : 1;
-        h = SOS_record[c];
-        h[WINS] += b * d;
-        h[LOSSES] += b * j;
-        h[TIES] += b * a;
-        foe_SOS_pct = calc_pct(h);
-        SOS_pct[c] = foe_SOS_pct;
-        if (active_tab == c) {
-            document.getElementById("team-SOS").innerHTML = foe_SOS_pct.toFixed(3)
-        }
+		
+		var check1 = game_states[(e + '-' + c)];
+		var check2 = game_states[(c + '-' + e)];
+		
+		c = f[i];
+		b = (division[c] == g) ? 2 : 1;
+		h = SOS_record[c];
+		h[WINS] += b * d;
+		h[LOSSES] += b * j;
+		h[TIES] += b * a;
+		foe_SOS_pct = calc_pct(h);
+		SOS_pct[c] = foe_SOS_pct;
+		if (active_tab == c) {
+				
+			document.getElementById("team-SOS").innerHTML = foe_SOS_pct.toFixed(3)
+			
+		}
     }
 };
+
 function rnfl(elem) {
     isRNFLMarkdown = elem.checked;
     markdownExport();
 }
+
 function markdownExport() {
     var sb = [];
     var url = $("#save_string").html();
@@ -1282,7 +1431,7 @@ function markdownExport() {
 
 function update_outcomes() {
 	
-	set_games_from_string('-WapWqmmlmamVppZmllqWqlqZVmqZVamWpaqapZaqaqmWllZVlmVmaaBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA_');
+	set_games_from_string('-WapWqmmlmamVppZmllqWqlqZVmqZVamWpaqapZaqaqmWllZVlmVmaappWmCAAAAAAAAAAAAAAAAAAAAAAAAAAA_');
 	set_all_rankings();
     set_game_cookie(cookie_letters, true);
 }
