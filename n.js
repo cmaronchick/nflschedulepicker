@@ -131,6 +131,48 @@ var games_cookie_name = "NFL2014",
         TEN: ['TB', 'CLE', 'IND', 'BUF', 'MIA', 'ATL', 'HOU', 'NO', 'CAR', 'JAC', 'OAK', 'JAC', 'NYJ', 'NE', 'HOU', 'IND'],
         WAS: ['MIA', 'STL', 'NYG', 'PHI', 'ATL', 'NYJ', 'TB', 'NE', 'NO', 'CAR', 'NYG', 'DAL', 'CHI', 'BUF', 'PHI', 'DAL']
     },
+	points_lookup = 
+	{
+		NE:  [347, 212, 39],
+		NYJ: [272, 228, 32],
+		BUF: [266, 257, 32],
+		MIA: [225, 287, 29],
+		
+		CIN: [297, 193, 36],
+		PIT: [266, 230, 28],
+		BAL: [226, 249, 23],
+		CLE: [186, 277, 20],
+		
+		IND: [249, 260, 29],
+		HOU: [232, 234, 28],
+		JAC: [236, 299, 25],
+		TEN: [203, 257, 24],
+		
+		DEN: [252, 207, 27],
+		KC:  [287, 220, 30],
+		OAK: [264, 280, 31],
+		SD:  [244, 307, 27],
+		
+		WAS: [241, 267, 26],
+		NYG: [287, 273, 31],
+		PHI: [243, 274, 28],
+		DAL: [204, 261, 20],
+		
+		MIN: [231, 194, 23],
+		GB:  [262, 215, 29],
+		CHI: [231, 264, 23],
+		DET: [230, 288, 27],
+		
+		CAR: [332, 205, 37],
+		ATL: [260, 234, 31],
+		TB:  [248, 279, 26],
+		NO:  [261, 339, 33],
+		
+		ARI: [355, 229, 42],
+		SEA: [267, 222, 45],
+		STL: [186, 230, 20],
+		SF:  [152, 271, 14]
+	},
     foe_hash = {
         ARI: { NO: 1, CHI: 1, SF: 1, STL: 1, DET: 1, PIT: 1, BAL: 1, CLE: 1, SEA: 1, CIN: 1, SF: 1, STL: 1, MIN: 1, PHI: 1, GB: 1, SEA: 1 },
         ATL: { PHI: 1, NYG: 1, DAL: 1, HOU: 1, WAS: 1, NO: 1, TEN: 1, TB: 1, SF: 1, IND: 1, MIN: 1, TB: 1, CAR: 1, JAC: 1, CAR: 1, NO: 1 },
@@ -745,7 +787,8 @@ function conf_pick_top(a) {
 function conf_tiebreaker(b) {
     var a = (b.length > 2),
         c = b.slice(0);
-
+	
+	//Head to Head
     c = hth_conf(b);
 
     switch (c.length) {
@@ -756,6 +799,8 @@ function conf_tiebreaker(b) {
                 return conf_tiebreaker(c);
             }
     }
+	
+	//Conference Record
     c = best_pct(c, conf_pct);
     switch (c.length) {
         case 1:
@@ -764,7 +809,10 @@ function conf_tiebreaker(b) {
             if (a) {
                 return conf_tiebreaker(c)
             }
-    } c = best_common_pct(c);
+    }
+	
+	//Common Games
+	c = best_common_pct(c);
     switch (c.length) {
         case 1:
             return c[0];
@@ -773,6 +821,8 @@ function conf_tiebreaker(b) {
                 return conf_tiebreaker(c);
             }
     }
+	
+	//Strength of Victory
     c = best_pct(c, SOV_pct);
 
     switch (c.length) {
@@ -783,6 +833,8 @@ function conf_tiebreaker(b) {
                 return conf_tiebreaker(c);
             }
     }
+	
+	//Strength of Schedule
     c = best_pct(c, SOS_pct);
     switch (c.length) {
         case 1:
@@ -792,6 +844,14 @@ function conf_tiebreaker(b) {
                 return conf_tiebreaker(c);
             }
     }
+	
+	//Best combined ranking among conference teams in points scored and allowed
+	
+	
+	//Best combined ranking among all teams in points scored and allowed
+	//Best net points in common games
+	//Best net points in all games
+	//Best net touchdowns in all games
     return coin_flip(c);
 }
 function division_pick_top(a) {
@@ -801,9 +861,15 @@ function division_pick_top(a) {
     } return (division_tiebreaker(remaining_teams))
 }
 
+function combinedPointsRank() {
+	
+}
+
 function division_tiebreaker(b) {
     var a = (b.length > 2),
         c;
+		
+	//Head to Head
     c = hth_div(b);
     switch (c.length) {
         case 1:
@@ -813,6 +879,8 @@ function division_tiebreaker(b) {
                 return division_tiebreaker(c)
             }
     }
+	
+	//Division Record
     c = best_pct(c, div_pct);
 
     switch (c.length) {
@@ -823,6 +891,8 @@ function division_tiebreaker(b) {
                 return division_tiebreaker(c)
             }
     }
+	
+	//Common Games
     c = best_common_pct(c);
     switch (c.length) {
         case 1:
@@ -832,6 +902,8 @@ function division_tiebreaker(b) {
                 return division_tiebreaker(c);
             }
     }
+	
+	//Conference Record
     c = best_pct(c, conf_pct);
     switch (c.length) {
         case 1:
@@ -840,6 +912,8 @@ function division_tiebreaker(b) {
             return division_tiebreaker(c);
         }
     }
+	
+	//Strength of Victory
     c = best_pct(c, SOV_pct);
     switch (c.length) {
         case 1:
@@ -848,7 +922,10 @@ function division_tiebreaker(b) {
             if (a) {
                 return division_tiebreaker(c)
             }
-    } c = best_pct(c, SOS_pct);
+    }
+	
+	//Strength of Schedule
+	c = best_pct(c, SOS_pct);
     switch (c.length) {
         case 1:
             return c[0];
@@ -857,6 +934,12 @@ function division_tiebreaker(b) {
                 return division_tiebreaker(c);
             }
     }
+	
+	//Best combined ranking among conference teams in points scored and allowed
+	//Best combined ranking among all teams in points scored and allowed
+	//Best net points in common games
+	//Best net points in all games
+	//Best net touchdowns in all games
     return coin_flip(c);
 }
 
@@ -1267,7 +1350,9 @@ function modify_game(e, d, b, c, a) {
 		
 			game_work(d, b, div_record, div_pct, "div", c, a) 
 		} 
-	} 
+	}
+	
+	combinedPointsRank();
 } 
 
 function game_work(i, h, d, g, b, c, a) { 
@@ -1302,26 +1387,49 @@ function modify_SOV(e, j, i, n, r) {
 
 		b = p[f]; a = SOV_record[b]; 
 		
-		var check1 = game_states[(j + '-' + b)];
-		var check2 = game_states[(b + '-' + j)];
-			
-		if((check1 != 0) && (check2 != 0)) {
+		h = j + "-" + b; 
+		k = (h == e) ? undefined : game_states[h]; 
 		
-			h = j + "-" + b; 
+		if (k == HOME_WIN) { 
+		
+			a[WINS] += n; a[TIES] += r 
+		} 
+		
+		d = b + "-" + j; 
+		m = (d == e) ? undefined : game_states[d]; 
+		
+		if (m == AWAY_WIN) { 
+		
+			a[WINS] += n; 
+			a[TIES] += r 
+		} 
+		
+		q = calc_pct(a); 
+		SOV_pct[b] = q; 
+		
+		if (active_tab == b) { 
+		
+			document.getElementById("team-SOV").innerHTML = q.toFixed(3) 
+		} 
+		
+		if (r === 0) { 
+		
+			b = o[f]; 
+			a = SOV_record[b]; 
+			h = i + "-" + b; 
 			k = (h == e) ? undefined : game_states[h]; 
 			
-			if (k == HOME_WIN) { 
+			if (k === HOME_WIN) { 
 			
-				a[WINS] += n; a[TIES] += r 
+				a[LOSSES] += n 
 			} 
 			
-			d = b + "-" + j; 
+			d = b + "-" + i; 
 			m = (d == e) ? undefined : game_states[d]; 
 			
-			if (m == AWAY_WIN) { 
+			if (m === AWAY_WIN) { 
 			
-				a[WINS] += n; 
-				a[TIES] += r 
+				a[LOSSES] += n 
 			} 
 			
 			q = calc_pct(a); 
@@ -1330,35 +1438,6 @@ function modify_SOV(e, j, i, n, r) {
 			if (active_tab == b) { 
 			
 				document.getElementById("team-SOV").innerHTML = q.toFixed(3) 
-			} 
-			
-			if (r === 0) { 
-			
-				b = o[f]; 
-				a = SOV_record[b]; 
-				h = i + "-" + b; 
-				k = (h == e) ? undefined : game_states[h]; 
-				
-				if (k === HOME_WIN) { 
-				
-					a[LOSSES] += n 
-				} 
-				
-				d = b + "-" + i; 
-				m = (d == e) ? undefined : game_states[d]; 
-				
-				if (m === AWAY_WIN) { 
-				
-					a[LOSSES] += n 
-				} 
-				
-				q = calc_pct(a); 
-				SOV_pct[b] = q; 
-				
-				if (active_tab == b) { 
-				
-					document.getElementById("team-SOV").innerHTML = q.toFixed(3) 
-				} 
 			}
 		} 
 	} 
@@ -1369,9 +1448,6 @@ function modify_SOS(e, d, j, a) {
 	var g = division[e], f = foe_lookup[e], c, b, h, i;
 	
     for (i = unique_foes; i--;) {
-		
-		var check1 = game_states[(e + '-' + c)];
-		var check2 = game_states[(c + '-' + e)];
 		
 		c = f[i];
 		b = (division[c] == g) ? 2 : 1;
