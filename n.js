@@ -131,48 +131,6 @@ var games_cookie_name = "NFL2014",
         TEN: ['TB', 'CLE', 'IND', 'BUF', 'MIA', 'ATL', 'HOU', 'NO', 'CAR', 'JAC', 'OAK', 'JAC', 'NYJ', 'NE', 'HOU', 'IND'],
         WAS: ['MIA', 'STL', 'NYG', 'PHI', 'ATL', 'NYJ', 'TB', 'NE', 'NO', 'CAR', 'NYG', 'DAL', 'CHI', 'BUF', 'PHI', 'DAL']
     },
-	points_lookup = 
-	{
-		NE:  [347, 212, 39],
-		NYJ: [272, 228, 32],
-		BUF: [266, 257, 32],
-		MIA: [225, 287, 29],
-		
-		CIN: [297, 193, 36],
-		PIT: [266, 230, 28],
-		BAL: [226, 249, 23],
-		CLE: [186, 277, 20],
-		
-		IND: [249, 260, 29],
-		HOU: [232, 234, 28],
-		JAC: [236, 299, 25],
-		TEN: [203, 257, 24],
-		
-		DEN: [252, 207, 27],
-		KC:  [287, 220, 30],
-		OAK: [264, 280, 31],
-		SD:  [244, 307, 27],
-		
-		WAS: [241, 267, 26],
-		NYG: [287, 273, 31],
-		PHI: [243, 274, 28],
-		DAL: [204, 261, 20],
-		
-		MIN: [231, 194, 23],
-		GB:  [262, 215, 29],
-		CHI: [231, 264, 23],
-		DET: [230, 288, 27],
-		
-		CAR: [332, 205, 37],
-		ATL: [260, 234, 31],
-		TB:  [248, 279, 26],
-		NO:  [261, 339, 33],
-		
-		ARI: [355, 229, 42],
-		SEA: [267, 222, 45],
-		STL: [186, 230, 20],
-		SF:  [152, 271, 14]
-	},
     foe_hash = {
         ARI: { NO: 1, CHI: 1, SF: 1, STL: 1, DET: 1, PIT: 1, BAL: 1, CLE: 1, SEA: 1, CIN: 1, SF: 1, STL: 1, MIN: 1, PHI: 1, GB: 1, SEA: 1 },
         ATL: { PHI: 1, NYG: 1, DAL: 1, HOU: 1, WAS: 1, NO: 1, TEN: 1, TB: 1, SF: 1, IND: 1, MIN: 1, TB: 1, CAR: 1, JAC: 1, CAR: 1, NO: 1 },
@@ -367,18 +325,29 @@ var games_cookie_name = "NFL2014",
     cookie_letters = [],
     game_position = {},
     game_states = {},
+	playoff_game_position = {},
+	playoff_game_states = {},
     unpicked_games_count = game_list_len,
     conf_record = {},
     div_record = {},
     all_record = {},
     SOS_record = {},
     SOV_record = {},
+	conf_points_for = {},
+	all_points_for = {},
+	conf_points_against = {},
+	all_points_against = {},
     conf_pct = {},
     div_pct = {},
     all_pct = {},
     team_pct = {},
     SOS_pct = {},
     SOV_pct = {},
+	conf_points_rank = {},
+	all_points_rank = {},
+	net_points_common = {},
+	net_points_all = {},
+	num_touchdowns = {},
     ii,
     jj;
 my_init_func();
@@ -539,9 +508,20 @@ function set_standings_game(b, a) {
 function change_game(c, b) {
     var a = game_states[c],
         d;
+		
+	if(active_tab == 'week-18') {
+		a = playoff_game_states[c]
+	}
+		
     if (a != b) {
-        d = c.match(/(\w+)-(\w+)/); game_states[c] = b;
-        xor_cookie_bits(c, a, b);
+		
+		if(active_tab != 'week-18') {
+			d = c.match(/(\w+)-(\w+)/); game_states[c] = b;
+			xor_cookie_bits(c, a, b);
+		} else {
+			d = c.match(/(\w+)-(\w+)/); playoff_game_states[c] = b;
+		}
+		
         switch (a) {
             case AWAY_WIN:
                 modify_game(c, d[1], d[2], -1, 0);
@@ -560,9 +540,16 @@ function change_game(c, b) {
 }
 
 function wgc(b, a) {
-    if (a == game_states[b]) {
-        a = NO_GAME
-    }
+	
+	if(active_tab != 'week-18') {
+		if (a == game_states[b]) {
+			a = NO_GAME
+		}
+	} else {
+		if (a == playoff_game_states[b]) {
+			a = NO_GAME
+		}
+	}
     change_game(b, a);
     set_game_cookie(cookie_letters);
     set_all_rankings();
@@ -1156,7 +1143,12 @@ function show_week_tab(e) {
     a.innerHTML = week_tab(e, g, b);
     for (f = b.length; f--;) {
         c = b[f];
-        set_game_buttons(c, game_states[c])
+		
+		if(active_tab != 'week-18') {
+			set_game_buttons(c, game_states[c])
+		} else {
+			set_game_buttons(c, playoff_game_states[c])
+		}
     }
 }
 
@@ -1234,6 +1226,7 @@ function week_game_table(g, b) {
         k = "",
         i,
         h,
+		o,
         d;
 
     c = '<div style="float:left"><table class="gametable"><tr><th colspan="3">' + g + '</th><th class="transparent"></th></tr><tr><th>Away</th><th class="transparent"></th><th>Home</th><th class="transparent"></th></tr>';
@@ -1242,7 +1235,14 @@ function week_game_table(g, b) {
     for (h = 0; h < d; h++) {
         i = b[h];
         e = game_buttons(i);
-        switch (day_codes[game_position[i]]) {
+		
+		if(active_tab != 'week-18') {
+			o = day_codes[game_position[i]];
+		} else {
+			o = day_codes[playoff_game_position[i]];
+		}
+		
+        switch (o) {
             case "T":
                 j += e;
                 break;
@@ -1279,6 +1279,11 @@ function game_buttons(i, a) {
         c = g[1];
         f = g[2];
         d = day_codes[game_position[i]];
+		
+		if(active_tab == 'week-18') {
+			d = day_codes[playoff_game_position[i]];
+		}
+		
         h = day_explaination[d];
         e = "<tr>" + b + '<td id="' + i + '-away-td" onclick="wgc( \'' + i + "', " + AWAY_WIN + ')"><div class="m-icon sp-m' + c + '" style="float: left"></div><div style="float:right;padding:3px">' + c + '<br>&nbsp;</div></td><td title="Click = to predict a tie."id="' + i + '-tie-td"  onclick="wgc( \'' + i + "', " + TIE_GAME + ')">&nbsp;=&nbsp;</td><td id="' + i + '-home-td" onclick="wgc( \'' + i + "', " + HOME_WIN + ')"><div style="float:left;padding:3px">' + f + '<br>&nbsp;</div><div class="m-icon sp-m' + f + '" style="float: right"></div></td><td title="' + h + '">' + d + "</td></tr>"
     }
@@ -1310,49 +1315,51 @@ function update_WLT_html(e, b, a, g, d) {
 
 function modify_game(e, d, b, c, a) { 
 	
-	unpicked_games_count -= (c + a); 
-	if (a == -1) { 
-	
-			modify_SOV(e, d, b, 0, -1); 
-			modify_SOV(e, b, d, 0, -1)
+	if(active_tab != 'week-18') {
+		unpicked_games_count -= (c + a); 
+		if (a == -1) { 
+		
+				modify_SOV(e, d, b, 0, -1); 
+				modify_SOV(e, b, d, 0, -1)
+				
+		} else { 
+		
+			if (c == -1) { 
 			
-	} else { 
-	
-		if (c == -1) { 
+				modify_SOV(e, d, b, -1, 0) 
+				
+			} 
+		} 
 		
-			modify_SOV(e, d, b, -1, 0) 
+		game_work(d, b, all_record, all_pct, "WLT", c, a); 
+		modify_SOS(d, c, 0, a); 
+		modify_SOS(b, 0, c, a); 
+		
+		if (a == 1) { 
+		
+			modify_SOV(e, d, b, 0, 1); 
+			modify_SOV(e, b, d, 0, 1) 
 			
+		} else { 
+		
+			if (c == 1) { 
+			
+				modify_SOV(e, d, b, 1, 0) 
+			} 
 		} 
-	} 
-	
-	game_work(d, b, all_record, all_pct, "WLT", c, a); 
-	modify_SOS(d, c, 0, a); 
-	modify_SOS(b, 0, c, a); 
-	
-	if (a == 1) { 
-	
-		modify_SOV(e, d, b, 0, 1); 
-		modify_SOV(e, b, d, 0, 1) 
 		
-	} else { 
-	
-		if (c == 1) { 
+		if (division[d][0] == division[b][0]) { 
 		
-			modify_SOV(e, d, b, 1, 0) 
-		} 
-	} 
-	
-	if (division[d][0] == division[b][0]) { 
-	
-		game_work(d, b, conf_record, conf_pct, "conf", c, a); 
+			game_work(d, b, conf_record, conf_pct, "conf", c, a); 
+			
+			if (division[d] == division[b]) { 
+			
+				game_work(d, b, div_record, div_pct, "div", c, a) 
+			} 
+		}
 		
-		if (division[d] == division[b]) { 
-		
-			game_work(d, b, div_record, div_pct, "div", c, a) 
-		} 
+		combinedPointsRank();
 	}
-	
-	combinedPointsRank();
 } 
 
 function game_work(i, h, d, g, b, c, a) { 
@@ -1514,22 +1521,25 @@ function update_outcomes() {
 
 function edit_playoffs() {
 	
-	/*
 	//Wild Card
 	var afcWildCard1 = conferenceRankingObject['AFC'].placements[5].name + '-' + conferenceRankingObject['AFC'].placements[4].name;
 	var afcWildCard2 = conferenceRankingObject['AFC'].placements[6].name + '-' + conferenceRankingObject['AFC'].placements[3].name;
 	var nfcWildCard1 = conferenceRankingObject['NFC'].placements[5].name + '-' + conferenceRankingObject['NFC'].placements[4].name;
 	var nfcWildCard2 = conferenceRankingObject['NFC'].placements[6].name + '-' + conferenceRankingObject['NFC'].placements[3].name;
 	week_lists[17] = [afcWildCard1, afcWildCard2, nfcWildCard1, nfcWildCard2];
-	game_position[afcWildCard1] = 256;
-	game_position[afcWildCard2] = 257;
-	game_position[nfcWildCard1] = 258;
-	game_position[nfcWildCard2] = 259;
-	game_states[afcWildCard1] = 0;
-	game_states[afcWildCard2] = 0;
-	game_states[nfcWildCard1] = 0;
-	game_states[nfcWildCard2] = 0;
+	playoff_game_position[afcWildCard1] = 0;
+	playoff_game_position[afcWildCard2] = 1;
+	playoff_game_position[nfcWildCard1] = 2;
+	playoff_game_position[nfcWildCard2] = 3;
 	
+	if(active_tab != 'week-18') {
+		playoff_game_states[afcWildCard1] = 0;
+		playoff_game_states[afcWildCard2] = 0;
+		playoff_game_states[nfcWildCard1] = 0;
+		playoff_game_states[nfcWildCard2] = 0;
+	}
+	
+	/*
 	//Divisional
 	if(game_states[afcWildCard1] == 1 && game_states[afcWildCard2] == 1) {
 		
