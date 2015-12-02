@@ -1710,6 +1710,10 @@ function edit_playoffs() {
 	if(superBowl != 'NA-NA') {
 		
 		week_lists[20] = [superBowl];
+	
+	} else {
+		
+		week_lists[20] = [];
 	}
 	
 	playoff_game_position[superBowl] = 10;
