@@ -423,6 +423,8 @@ function clear_data() {
         cookie_bits[c] = 0;
         cookie_letters[c] = "A"
     }
+	
+	edit_playoffs();
 }
 
 function set_games_from_string(b) {
