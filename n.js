@@ -1610,20 +1610,110 @@ function edit_playoffs() {
 		playoff_game_states[nfcDivisional2] = 0;
 	}
 	
-	/*
 	//Conference Championships
-	var afcChampionship = conferenceRankingObject['AFC'].placements[2].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
-	var nfcChampionship = conferenceRankingObject['NFC'].placements[2].name + '-' + conferenceRankingObject['NFC'].placements[1].name;
+	if(playoff_game_states[afcDivisional1] == 2 && playoff_game_states[afcDivisional2] == 2) {
+		
+		var afcChampionship = conferenceRankingObject['AFC'].placements[2].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
+	
+	} else if(playoff_game_states[afcDivisional1] == 1 && playoff_game_states[afcDivisional2] == 2) {
+		
+		var splitter = afcDivisional1.split("-");
+		var afcChampionship = splitter[0] + '-' + conferenceRankingObject['AFC'].placements[1].name;
+		
+	} else if(playoff_game_states[afcDivisional1] == 2 && playoff_game_states[afcDivisional2] == 1) {
+		
+		var splitter = afcDivisional2.split("-");
+		var afcChampionship = splitter[0] + '-' + conferenceRankingObject['AFC'].placements[2].name;
+		
+	} else if(playoff_game_states[afcDivisional1] == 1 && playoff_game_states[afcDivisional2] == 1) {
+		
+		var splitter1 = afcDivisional1.split("-");
+		var splitter2 = afcDivisional2.split("-");
+		var afcChampionship = splitter2[0] + '-' + splitter1[0];
+		
+	} else {
+		
+		var afcChampionship = 'NA-NA';
+	}
+	if(playoff_game_states[nfcDivisional1] == 2 && playoff_game_states[nfcDivisional2] == 2) {
+		
+		var nfcChampionship = conferenceRankingObject['NFC'].placements[2].name + '-' + conferenceRankingObject['NFC'].placements[1].name;
+	
+	} else if(playoff_game_states[nfcDivisional1] == 1 && playoff_game_states[nfcDivisional2] == 2) {
+		
+		var splitter = nfcDivisional1.split("-");
+		var nfcChampionship = splitter[0] + '-' + conferenceRankingObject['NFC'].placements[1].name;
+		
+	} else if(playoff_game_states[nfcDivisional1] == 2 && playoff_game_states[nfcDivisional2] == 1) {
+		
+		var splitter = nfcDivisional2.split("-");
+		var nfcChampionship = splitter[0] + '-' + conferenceRankingObject['NFC'].placements[2].name;
+		
+	} else if(playoff_game_states[nfcDivisional1] == 1 && playoff_game_states[nfcDivisional2] == 1) {
+		
+		var splitter1 = nfcDivisional1.split("-");
+		var splitter2 = nfcDivisional2.split("-");
+		var nfcChampionship = splitter2[0] + '-' + splitter1[0];
+		
+	} else {
+		
+		var nfcChampionship = 'NA-NA';
+	}
+	
+	if(afcChampionship != 'NA-NA' && nfcChampionship != 'NA-NA') {
 	week_lists[19] = [afcChampionship, nfcChampionship];
-	game_position[afcChampionship] = 8;
-	game_position[nfcChampionship] = 9;
-	game_states[afcChampionship] = 0;
-	game_states[nfcChampionship] = 0;
+	} else {
+		week_lists[19] = [];
+	}
+	
+	playoff_game_position[afcChampionship] = 8;
+	playoff_game_position[nfcChampionship] = 9;
+	
+	if((active_tab != 'week-20') && (active_tab != 'week-21')) {
+		playoff_game_states[afcChampionship] = 0;
+		playoff_game_states[nfcChampionship] = 0;
+	}
 	
 	//Super Bowl
-	var superBowl = conferenceRankingObject['NFC'].placements[1].name + '-' + conferenceRankingObject['AFC'].placements[1].name;
-	week_lists[20] = [superBowl];
-	game_position[superBowl] = 10;
-	game_states[superBowl] = 0;
-	*/
+	if(playoff_game_states[afcChampionship] == 1) {
+		
+		var splitter3 = afcChampionship.split("-");
+		var afcChampion = splitter3[0];
+	
+	} else if(playoff_game_states[afcChampionship] == 2) {
+		
+		var splitter3 = afcChampionship.split("-");
+		var afcChampion = splitter3[1];
+		
+	} else {
+		
+		var afcChampion = 'NA';
+	}
+	if(playoff_game_states[nfcChampionship] == 1) {
+		
+		var splitter4 = nfcChampionship.split("-");
+		var nfcChampion = splitter4[0];
+	
+	} else if(playoff_game_states[nfcChampionship] == 2) {
+		
+		var splitter4 = nfcChampionship.split("-");
+		var nfcChampion = splitter4[1];
+		
+	} else {
+		
+		var nfcChampion = 'NA';
+	}
+	var superBowl = nfcChampion + '-' + afcChampion;
+	
+	if(superBowl != 'NA-NA') {
+		
+		week_lists[20] = [superBowl];
+	}
+	
+	playoff_game_position[superBowl] = 10;
+	
+	if(active_tab != 'week-21') {
+		
+		playoff_game_states[superBowl] = 0;
+	}
 }
