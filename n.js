@@ -1282,7 +1282,7 @@ function game_buttons(i, a) {
         d = day_codes[game_position[i]];
 		
 		if((active_tab == 'week-18') || (active_tab == 'week-19') || (active_tab == 'week-20') || (active_tab == 'week-21')) {
-			d = day_codes[playoff_game_position[i]];
+			d = " ";
 		}
 		
         h = day_explaination[d];
