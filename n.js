@@ -245,6 +245,7 @@ var games_cookie_name = "NFL2014",
 		"week-20",
 		"week-21",
         "help",
+		"tie-explain",
         "BUF",
         "MIA",
         "NE",
@@ -1521,6 +1522,7 @@ function update_outcomes() {
 	set_all_rankings();
     set_game_cookie(cookie_letters, true);
 	edit_playoffs();
+	show_week_tab("week-13");
 }
 
 
@@ -1529,6 +1531,7 @@ function explain_ties() {
 	if(active_tab != 'help-tab' && active_tab != undefined) {
 		
 		var a = document.getElementById("autogen_tab");
+		set_tabbing_buttons("tie-explain");
 		a.innerHTML = '<h3>Tiebreaking explainations is still a work in progress</h3>'
 		/*
 		var i;
@@ -1545,8 +1548,6 @@ function explain_ties() {
 }
 
 function edit_playoffs() {
-	
-	//playoff_game_position.length = 0;
 	
 	//Wild Card
 	var afcWildCard1 = conferenceRankingObject['AFC'].placements[5].name + '-' + conferenceRankingObject['AFC'].placements[4].name;
