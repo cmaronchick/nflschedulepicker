@@ -349,7 +349,8 @@ var games_cookie_name = "NFL2014",
 	net_points_all = {},
 	num_touchdowns = {},
     ii,
-    jj;
+    jj,
+	tie_explain = [];
 my_init_func();
 function my_init_func() {
     var g = getCookie(games_cookie_name), b = getParam("a"), e, f, a, d, c, h; for (e = NFL_teams_len; e--;) {
@@ -543,6 +544,7 @@ function change_game(c, b) {
 
 function wgc(b, a) {
 	
+	tie_explain = [];
 	if((active_tab != 'week-18') && (active_tab != 'week-19') && (active_tab != 'week-20') && (active_tab != 'week-21')) {
 		if (a == game_states[b]) {
 			a = NO_GAME
@@ -778,7 +780,6 @@ function conf_tiebreaker(b) {
 	
 	//Head to Head
     c = hth_conf(b);
-
     switch (c.length) {
         case 1:
             return c[0];
@@ -1519,6 +1520,25 @@ function update_outcomes() {
 	set_all_rankings();
     set_game_cookie(cookie_letters, true);
 	edit_playoffs();
+}
+
+function explain_ties() {
+	
+	/*
+	if(active_tab != 'help-tab' && active_tab != undefined) {
+		
+		var a = document.getElementById("autogen_tab");
+		var i;
+		
+		a.innerHTML = '<ul>'
+		
+		for(i = 0; i < tie_explain.length; i++) {
+			
+			a.innerHTML += '<li>' + tie_explain[i] + '</li>';
+		}
+		a.innerHTML += '</ul>'
+	}
+	*/
 }
 
 function edit_playoffs() {

@@ -663,36 +663,39 @@
 <body>
     <div id="container">
         <div id="header" class="header_warning">
+			<center>
             <h3 style="margin: 0 auto;">
-                NFL Predictor V2 --------------------
-                <input type="button" class="up" id="help-button" value="Help" onclick="show_help()" />
-                <input type="button" class="button_up" id="reset-button" value="Reset all games" onclick="    reset_button()" />
-				<input type="button" class="up" id="update-button" value="Update Outcomes" onclick="update_outcomes()" />
-				
+                NFL Predictor V2
             </h3>
-            Go to week:
-            <input type="button" class="up" id="week-1-button" value="1" onclick="    show_week_tab('week-1')" />
-            <input type="button" class="up" id="week-2-button" value="2" onclick="    show_week_tab('week-2')" />
-            <input type="button" class="up" id="week-3-button" value="3" onclick="    show_week_tab('week-3')" />
-            <input type="button" class="up" id="week-4-button" value="4" onclick="    show_week_tab('week-4')" />
-            <input type="button" class="up" id="week-5-button" value="5" onclick="    show_week_tab('week-5')" />
-            <input type="button" class="up" id="week-6-button" value="6" onclick="    show_week_tab('week-6')" />
-            <input type="button" class="up" id="week-7-button" value="7" onclick="    show_week_tab('week-7')" />
-            <input type="button" class="up" id="week-8-button" value="8" onclick="    show_week_tab('week-8')" />
-            <input type="button" class="up" id="week-9-button" value="9" onclick="    show_week_tab('week-9')" />
-            <input type="button" class="up" id="week-10-button" value="10" onclick="    show_week_tab('week-10')" />
-            <input type="button" class="up" id="week-11-button" value="11" onclick="    show_week_tab('week-11')" />
-            <input type="button" class="up" id="week-12-button" value="12" onclick="    show_week_tab('week-12')" />
-            <input type="button" class="up" id="week-13-button" value="13" onclick="    show_week_tab('week-13')" />
-            <input type="button" class="up" id="week-14-button" value="14" onclick="    show_week_tab('week-14')" />
-            <input type="button" class="up" id="week-15-button" value="15" onclick="    show_week_tab('week-15')" />
-            <input type="button" class="up" id="week-16-button" value="16" onclick="    show_week_tab('week-16')" />
-            <input type="button" class="up" id="week-17-button" value="17" onclick="    show_week_tab('week-17')" />
-			<input type="button" class="up" id="week-18-button" value="WC" onclick="    show_week_tab('week-18')" />
-			<input type="button" class="up" id="week-19-button" value="DV" onclick="    show_week_tab('week-19')" />
-			<input type="button" class="up" id="week-20-button" value="CH" onclick="    show_week_tab('week-20')" />
-			<input type="button" class="up" id="week-21-button" value="SB" onclick="    show_week_tab('week-21')" />
+			<h3 style="margin: 0 auto;">
+				<input type="button" class="button_up" id="help-button" value="Help" onclick="show_help()" />
+                <input type="button" class="up" id="reset-button" value="Reset all games" onclick="reset_button()" />
+				<input type="button" class="button_up" id="tie-explain-button" value="Explain Tiebreakers" onclick="explain_ties()" />
+				<input type="button" class="up" id="update-button" value="Update Outcomes" onclick="update_outcomes()" />
+			</h3>
+            <input type="button" class="button_up" id="week-1-button" value="1" onclick="    show_week_tab('week-1')" />
+            <input type="button" class="button_up" id="week-2-button" value="2" onclick="    show_week_tab('week-2')" />
+            <input type="button" class="button_up" id="week-3-button" value="3" onclick="    show_week_tab('week-3')" />
+            <input type="button" class="button_up" id="week-4-button" value="4" onclick="    show_week_tab('week-4')" />
+            <input type="button" class="button_up" id="week-5-button" value="5" onclick="    show_week_tab('week-5')" />
+            <input type="button" class="button_up" id="week-6-button" value="6" onclick="    show_week_tab('week-6')" />
+            <input type="button" class="button_up" id="week-7-button" value="7" onclick="    show_week_tab('week-7')" />
+            <input type="button" class="button_up" id="week-8-button" value="8" onclick="    show_week_tab('week-8')" />
+            <input type="button" class="button_up" id="week-9-button" value="9" onclick="    show_week_tab('week-9')" />
+            <input type="button" class="button_up" id="week-10-button" value="10" onclick="    show_week_tab('week-10')" />
+            <input type="button" class="button_up" id="week-11-button" value="11" onclick="    show_week_tab('week-11')" />
+            <input type="button" class="button_up" id="week-12-button" value="12" onclick="    show_week_tab('week-12')" />
+            <input type="button" class="button_up" id="week-13-button" value="13" onclick="    show_week_tab('week-13')" />
+            <input type="button" class="button_up" id="week-14-button" value="14" onclick="    show_week_tab('week-14')" />
+            <input type="button" class="button_up" id="week-15-button" value="15" onclick="    show_week_tab('week-15')" />
+            <input type="button" class="button_up" id="week-16-button" value="16" onclick="    show_week_tab('week-16')" />
+            <input type="button" class="button_up" id="week-17-button" value="17" onclick="    show_week_tab('week-17')" />
+			<input type="button" class="button_up" id="week-18-button" value="WC" onclick="    show_week_tab('week-18')" />
+			<input type="button" class="button_up" id="week-19-button" value="DV" onclick="    show_week_tab('week-19')" />
+			<input type="button" class="button_up" id="week-20-button" value="CH" onclick="    show_week_tab('week-20')" />
+			<input type="button" class="button_up" id="week-21-button" value="SB" onclick="    show_week_tab('week-21')" />
             <br>
+			</center>
         </div>
         <div style="float: left">
             <table class="conf_table" id="AFC-table">
@@ -892,6 +895,9 @@
 				</li>
 				<li>
 					Rest of the tie-breakers (Including Points)
+				</li>
+				<li>
+					Tie-Breaking Explainations
 				</li>
 			</ul>
         </div>
