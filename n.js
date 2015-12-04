@@ -1522,6 +1522,7 @@ function update_outcomes() {
 	edit_playoffs();
 }
 
+
 function explain_ties() {
 	
 	/*
