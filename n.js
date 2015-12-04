@@ -63,29 +63,30 @@ var games_cookie_name = "NFL2014",
     team_week_lists = {},
     game_list = [],
     game_list_len = 267,
-    day_codes =
-      "T            NMM"  //01
-    + "T             NM"  //02
-    + "T             NM"  //03
-    + "TU           NM"    //04
-    + "T           NM"  //05
-    + "T           NM"  //06
-    + "TU          NM"  //07
-    + "TU          NM"  //08
-    + "T          NM"    //09
-    + "T           NM"    //10
-    + "T           NM"   //11
-    + "TTT           NM"  //12
-    + "T             NM" //13
-    + "T             NM" //14
-    + "TZ            NM" //15
-    + "TZ            NM" //16
-    + "                " //17
-	+ "    " //WC
+	playoff_day_codes = 
+	  "    " //WC
 	+ "    " //DR
 	+ "  " //CC
 	+ "N" //SB
-    ,day_explaination = { T: "Thursday game", N: "Sunday Night game", M: "Monday Night game", U: "@ London, UK", C: "@ Toronto, Canada", " ": "Sunday game", Z:"Saturday game" },
+    ,day_codes =
+      "T            NMM"  //01
+    + "T             NM"  //02
+    + "T             NM"  //03
+    + "TI           NM"    //04
+    + "T           NM"  //05
+    + "T           NM"  //06
+    + "TI          NM"  //07
+    + "TI          NM"  //08
+    + "T          NM"    //09
+    + "T           NM"    //10
+    + "T         N  M"   //11
+    + "TTT           NM"  //12
+    + "T             NM" //13
+    + "T      N       M" //14
+    + "TZ            NM" //15
+    + "TZ            NM" //16
+    + "                " //17
+    ,day_explaination = { T: "Thursday game", N: "Sunday Night game", M: "Monday Night game", I: "International game", " ": "Sunday game", Z:"Saturday game" },
     bye_lookup = {
         4: "NE TEN",
         5: "CAR MIA MIN NYJ",
@@ -1241,7 +1242,7 @@ function week_game_table(g, b) {
 		if((active_tab != 'week-18') && (active_tab != 'week-19') && (active_tab != 'week-20') && (active_tab != 'week-21')) {
 			o = day_codes[game_position[i]];
 		} else {
-			o = day_codes[playoff_game_position[i]];
+			o = playoff_day_codes[playoff_game_position[i]];
 		}
 		
         switch (o) {
@@ -1249,7 +1250,7 @@ function week_game_table(g, b) {
                 j += e;
                 break;
             case " ":
-            case "U":
+            case "I":
             case "C":
             case "Z":
                 a += e;
@@ -1525,10 +1526,11 @@ function update_outcomes() {
 
 function explain_ties() {
 	
-	/*
 	if(active_tab != 'help-tab' && active_tab != undefined) {
 		
 		var a = document.getElementById("autogen_tab");
+		a.innerHTML = '<h3>Tiebreaking explainations is still a work in progress</h3>'
+		/*
 		var i;
 		
 		a.innerHTML = '<ul>'
@@ -1538,11 +1540,13 @@ function explain_ties() {
 			a.innerHTML += '<li>' + tie_explain[i] + '</li>';
 		}
 		a.innerHTML += '</ul>'
+		*/
 	}
-	*/
 }
 
 function edit_playoffs() {
+	
+	//playoff_game_position.length = 0;
 	
 	//Wild Card
 	var afcWildCard1 = conferenceRankingObject['AFC'].placements[5].name + '-' + conferenceRankingObject['AFC'].placements[4].name;
