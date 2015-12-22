@@ -1518,11 +1518,11 @@ function markdownExport() {
 
 function update_outcomes() {
 	
-	set_games_from_string('-WapWqmmlmamVppZmllqWqlqZVmqZVamWpaqapZaqaqmWllZVlmVmaappWmWllmVZqmlmZJAAAAAAAAAAAAAAAA_');
+	set_games_from_string('-WapWqmmlmamVppZmllqWqlqZVmqZVamWpaqapZaqaqmWllZVlmVmaappWmWllmVZqmlmZZWlmpFAAAAAAAAAAA_');
 	set_all_rankings();
     set_game_cookie(cookie_letters, true);
 	edit_playoffs();
-	show_week_tab("week-15");
+	show_week_tab("week-16");
 }
 
 
