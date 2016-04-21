@@ -45,7 +45,7 @@ var games_cookie_name = "NFL2016",
         /*5*/["ARI-SF", "NE-CLE", "PHI-DET", "CHI-IND", "TEN-MIA", "WAS-BAL", "HOU-MIN", "NYJ-PIT", "ATL-DEN", "CIN-DAL", "BUF-LA", "SD-OAK", "NYG-GB", "TB-CAR"],
         /*6*/["DEN-SD", "SF-BUF", "PHI-WAS", "CLE-TEN", "BAL-NYG", "CAR-NO", "JAC-CHI", "LA-DET", "PIT-MIA", "CIN-NE", "KC-OAK", "ATL-SEA", "DAL-GB", "IND-HOU", "NYJ-ARI"],
         /*7*/["CHI-GB", "NYG-LA", "NO-KC", "IND-TEN", "MIN-PHI", "CLE-CIN", "WAS-DET", "OAK-JAC", "BUF-MIA", "BAL-NYJ", "TB-SF", "SD-ATL", "NE-PIT", "SEA-ARI", "HOU-DEN"],
-        /*8*/["JAC-TEN", "WAS-CIN", "KC-IND", "OAK-TB", "SEA-NO", "DET-HOU", "NUJ-CLE", "GB-ATL", "NE-BUF", "SD-DEN", "ARI-CAR", "PHI-DAL", "MIN-CHI"],
+        /*8*/["JAC-TEN", "WAS-CIN", "KC-IND", "OAK-TB", "SEA-NO", "DET-HOU", "NYJ-CLE", "GB-ATL", "NE-BUF", "SD-DEN", "ARI-CAR", "PHI-DAL", "MIN-CHI"],
         /*9*/["ATL-TB", "DET-MIN", "PHI-NYG", "NYJ-MIA", "JAC-KC", "DAL-CLE", "PIT-BAL", "NO-SF", "CAR-LA", "IND-GB", "TEN-SD", "DEN-OAK", "BUF-SEA"],
         /*10*/["CLE-BAL", "HOU-JAC", "DEN-NO", "LA-NYJ", "ATL-PHI", "KC-CAR", "CHI-TB", "MIN-WAS", "GB-TEN", "MIA-SD", "SF-ARI", "DAL-PIT", "SEA-NE", "CIN-NYG"],
         /*11*/["NO-CAR", "PIT-CLE", "BAL-DAL", "JAC-DET", "TEN-IND", "BUF-CIN", "TB-KC", "CHI-NYG", "ARI-MIN", "MIA-LA", "NE-SF", "PHI-SEA", "GB-WAS", "HOU-OAK"],
@@ -74,17 +74,17 @@ var games_cookie_name = "NFL2016",
     + "T             NM"  //03
     + "TI           NM"    //04
     + "T           NM"  //05
-    + "T           NM"  //06
-    + "TI          NM"  //07
-    + "TI          NM"  //08
+    + "T            NM"  //06
+    + "TI           NM"  //07
+    + "TI         NM"  //08
     + "T          NM"    //09
     + "T           NM"    //10
-    + "T         N  M"   //11
+    + "T           NM"   //11
     + "TTT           NM"  //12
-    + "T             NM" //13
-    + "T      N       M" //14
+    + "T            NM" //13
+    + "T             NM" //14
     + "TZ            NM" //15
-    + "TZ            NM" //16
+    + "TZZZZZZZZZZZZ NM" //16
     + "                " //17
     ,day_explaination = { T: "Thursday game", N: "Sunday Night game", M: "Monday Night game", I: "International game", " ": "Sunday game", Z:"Saturday game" },
     bye_lookup = {
@@ -95,7 +95,7 @@ var games_cookie_name = "NFL2016",
         8: "BAL LA MIA NYG PIT SF",
         9: "ARI CHI CIN HOU NE WAS",
         10: "BUF DET IND OAK",
-        11: "ATL DEN NYJ SD"
+        11: "ATL DEN NYJ SD",
 		13: "CLE TEN"
     },
     foe_lookup =
@@ -297,6 +297,7 @@ var games_cookie_name = "NFL2016",
         IND: "Indianapolis Colts",
         JAC: "Jacksonville Jaguars",
         KC: "Kansas City Chiefs",
+		LA: "Los Angeles Rams",
         MIA: "Miami Dolphins",
         MIN: "Minnesota Vikings",
         NE: "New England Patriots",
@@ -309,7 +310,6 @@ var games_cookie_name = "NFL2016",
         SD: "San Diego Chargers",
         SEA: "Seattle Seahawks",
         SF: "San Francisco 49ers",
-        LA: "Los Angeles Rams",
         TB: "Tampa Bay Buccaneers",
         TEN: "Tennessee Titans",
         WAS: "Washington Redskins"
@@ -1519,11 +1519,13 @@ function markdownExport() {
 
 function update_outcomes() {
 	
-	set_games_from_string('-WapWqmmlmamVppZmllqWqlqZVmqZVamWpaqapZaqaqmWllZVlmVmaappWmWllmVZqmlmZZWlmpFAAAAAAAAAAA_');
-	set_all_rankings();
-    set_game_cookie(cookie_letters, true);
-	edit_playoffs();
-	show_week_tab("week-16");
+	//Season has not started yet
+	
+	//set_games_from_string('-WapWqmmlmamVppZmllqWqlqZVmqZVamWpaqapZaqaqmWllZVlmVmaappWmWllmVZqmlmZZWlmpFAAAAAAAAAAA_');
+	//set_all_rankings();
+    //set_game_cookie(cookie_letters, true);
+	//edit_playoffs();
+	//show_week_tab("week-16");
 }
 
 
