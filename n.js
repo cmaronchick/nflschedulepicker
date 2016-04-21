@@ -1520,6 +1520,7 @@ function markdownExport() {
 function update_outcomes() {
 	
 	//Season has not started yet
+	alert("NFL Season has not started yet, so nothing was updated");
 	
 	//set_games_from_string('-WapWqmmlmamVppZmllqWqlqZVmqZVamWpaqapZaqaqmWllZVlmVmaappWmWllmVZqmlmZZWlmpFAAAAAAAAAAA_');
 	//set_all_rankings();
