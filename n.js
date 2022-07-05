@@ -54,7 +54,8 @@ var games_cookie_name = "NFL2023",
         /*14*/['MIN-ARI', 'BUF-PHI', 'SF-CLE', 'DET-LAR', 'NO-TB', 'TEN-NYJ', 'PIT-CIN', 'NE-HOU', 'IND-JAC', 'LAC-KC', 'WAS-CHI', 'ATL-CAR', 'LV-DEN', 'DAL-GB', 'SEA-BAL', 'NYG-MIA'],
         /*15*/['TB-LAR', 'NYJ-DAL', 'CHI-MIN', 'ATL-JAC', 'HOU-IND', 'ARI-PHI', 'CAR-NYG', 'TEN-NE', 'BUF-WAS', 'KC-BAL', 'CLE-SEA', 'GB-LV', 'DEN-PIT', 'MIA-LAC', 'CIN-SF', 'DET-NO'],
         /*16*/['LAC-LV', 'WAS-PHI', 'NE-NYJ', 'HOU-TEN', 'CLE-KC', 'IND-MIA', 'JAC-NO', 'SF-DET', 'DAL-BUF', 'CHI-TB', 'CAR-ATL', 'NYG-MIN', 'LAR-SEA', 'GB-ARI', 'PIT-BAL', 'CIN-DEN'],
-        /*17*/['NYJ-BUF', 'NE-MIA',' TB-CAR', 'NO-ATL', 'BAL-CIN', 'PIT-CLE', 'JAC-HOU', 'TEN-IND', 'LV-KC', 'WAS-DAL', 'PHI-NYG', 'DET-CHI', 'MIN-GB', 'LAC-DEN', 'SEA-ARI', 'LAR-SF']
+        /*17*/['NYJ-BUF', 'NE-MIA',' TB-CAR', 'NO-ATL', 'BAL-CIN', 'PIT-CLE', 'JAC-HOU', 'TEN-IND', 'LV-KC', 'WAS-DAL', 'PHI-NYG', 'DET-CHI', 'MIN-GB', 'LAC-DEN', 'SEA-ARI', 'LAR-SF'],
+        /*18*/['NYJ-BUF', 'NE-MIA',' TB-CAR', 'NO-ATL', 'BAL-CIN', 'PIT-CLE', 'JAC-HOU', 'TEN-IND', 'LV-KC', 'WAS-DAL', 'PHI-NYG', 'DET-CHI', 'MIN-GB', 'LAC-DEN', 'SEA-ARI', 'LAR-SF']
     ],
     team_week_lists = {},
     game_list = [],
@@ -349,7 +350,7 @@ function my_init_func() {
         set_games_from_string(b)
     }
     else {
-        if (g !== null && g !== "") {
+        if (g) {
             set_games_from_string(g)
         }
     }
@@ -377,7 +378,7 @@ function clear_data() {
         a;
     unpicked_games_count = 256;
     for (c = NFL_teams_len; c--;) {
-        a = NFL_teams[c];
+        a = NFL_teams[c];        
         document.getElementById(a + "-WLT").innerHTML = "0-0";
         document.getElementById(a + "-div").innerHTML = "0-0";
         all_record[a] = [0, 0, 0];
@@ -402,6 +403,7 @@ function clear_data() {
 }
 
 function set_games_from_string(b) {
+    console.log('b', b)
     if (b.match(cookie64_re) === null) {
         alert("Game data is corrupt, sorry. :(");
         clear_data(); return
@@ -565,6 +567,11 @@ function wild_ranker(c, b, confName) {
     document.getElementById(a + "-conf-rank").innerHTML = 5;
     e.splice(e.indexOf(a), 1); e.push(b[a]); d = conf_pick_top(e);
     document.getElementById(d + "-conf-rank").innerHTML = 6;
+    if (!conferenceRankingObject[confName]) {
+        conferenceRankingObject[confName] = {
+            placements: []
+        }
+    }
     conferenceRankingObject[confName].placements[5] = { name: a, record: all_record[a] };
     conferenceRankingObject[confName].placements[6] = { name: d, record: all_record[d] };
 }
