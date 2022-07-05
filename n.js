@@ -38,7 +38,7 @@ var games_cookie_name = "NFL2023",
     base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_",
     number_of_weeks = 18,
     week_lists = [
-        /*1*/["PIT-NE", "GB-CHI", "KC-HOU", "CLE-NYJ", "IND-BUF", "MIA-WAS", "CAR-JAC", "SEA-LAR", "NO-ARI", "DET-LAC", "TEN-TB", "CIN-LV", "BAL-DEN", "NYG-DAL", "PHI-ATL", "MIN-SF"],
+        /*1*/["BUF-LAR", "NO-ATL", "SF-CHI", "PIT-CIN"],
         /*2*/["DEN-KC", "HOU-CAR", "SF-PIT", "TB-NO", "DET-MIN", "ARI-CHI", "NE-BUF", "LAC-CIN", "TEN-CLE", "ATL-NYG", "LAR-WAS", "MIA-JAC", "BAL-LV", "DAL-PHI", "SEA-GB", "NYJ-IND"],
         /*3*/["WAS-NYG", "ATL-DAL", "IND-TEN", "LV-CLE", "CIN-BAL", 'JAC-NE', 'NO-CAR', 'PHI-NYJ', 'TB-HOU', 'LAC-MIN', 'PIT-LAR', 'SF-ARI', 'BUF-MIA', 'CHI-SEA', 'DEN-DET', 'KC-GB'],
         /*4*/['BAL-PIT', 'NYJ-MIA', 'JAC-IND', 'NYG-BUF', 'CAR-TB', 'PHI-WAS', 'LV-CHI', 'HOU-ATL', 'KC-CIN', 'CLE-LAC', 'GB-SF', 'LAR-ARI', 'MIN-DEN', 'DAL-NO', 'DET-SEA'],
