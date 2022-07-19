@@ -38,55 +38,57 @@ var games_cookie_name = "NFL2023",
     base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_",
     number_of_weeks = 18,
     week_lists = [
-        /*1*/["NE-MIA","BUF-LAR","KC-ARI","CLE-CAR","JAC-WAS","PIT-CIN","NO-ATL","GB-MIN","TB-DAL","NYG-TEN","LV-LAC","PHI-DET","SF-CHI","IND-HOU","BAL-NYJ","DEN-SEA"],
-        /*2*/["NYJ-CLE","LAC-KC","MIN-PHI","TEN-BUF","CHI-GB","CIN-DAL","ATL-LAR","WAS-DET","ARI-LV","HOU-DEN","SEA-SF","IND-JAC","MIA-BAL","TB-NO","NE-PIT","CAR-NYG"],
-        /*3*/["JAC-LAC","DET-MIN","NO-CAR","HOU-CHI","PHI-WAS","BUF-MIA","CIN-NYJ","GB-TB","BAL-NE","LV-TEN","PIT-CLE","KC-IND","DAL-NYG","SF-DEN","ATL-SEA","LAR-ARI"],
-        /*4*/["LAR-SF","NE-GB","DEN-LV","ARI-CAR","BUF-BAL","WAS-DAL","TEN-IND","CLE-ATL","NYJ-PIT","JAC-PHI","CHI-NYG","LAC-HOU","SEA-DET","KC-TB","MIN-NO","MIA-CIN"],
-        /*5*/["LAC-CLE","IND-DEN","DET-NE","NYG-GB","LV-KC","CIN-BAL","DAL-LAR","PHI-ARI","SF-CAR","PIT-BUF","MIA-NYJ","ATL-TB","SEA-NO","HOU-JAC","TEN-WAS","CHI-MIN"],
-        /*6*/["DAL-PHI","CAR-LAR","BAL-NYG","TB-PIT","DEN-LAC","BUF-KC","ARI-SEA","JAC-IND","NYJ-GB","CIN-NO","MIN-MIA","SF-ATL","NE-CLE","WAS-CHI"],
-        /*7*/["CHI-NE","SEA-LAC","PIT-MIA","NYJ-DEN","HOU-LV","KC-SF","IND-TEN","NYG-JAC","GB-WAS","DET-DAL","ATL-CIN","CLE-BAL","TB-CAR","NO-ARI"],
-        /*8*/["DEN-JAC","GB-BUF","NE-NYJ","CHI-DAL","CIN-CLE","NYG-SEA","WAS-IND","SF-LAR","TEN-HOU","PIT-PHI","CAR-ATL","LV-NO","MIA-DET","ARI-MIN","BAL-TB"],
-        /*9*/["SEA-ARI","MIN-WAS","CAR-CIN","LAC-ATL","BAL-NO","TEN-KC","LAR-TB","BUF-NYJ","IND-NE","LV-JAC","MIA-CHI","GB-DET","PHI-HOU"],
-        /*10*/["DAL-GB","SEA-TB","WAS-PHI","LAC-SF","IND-LV","NO-PIT","DEN-TEN","ARI-LAR","HOU-NYG","DET-CHI","CLE-MIA","JAC-KC","MIN-BUF","ATL-CAR"],
-        /*11*/["SF-ARI","LV-DEN","CHI-ATL","WAS-HOU","NYJ-NE","CIN-PIT","PHI-IND","LAR-NO","DAL-MIN","DET-NYG","CAR-BAL","CLE-BUF","KC-LAC","TEN-GB"],
-        /*12*/["LAR-KC","NO-SF","TB-CLE","ATL-WAS","LV-SEA","LAC-ARI","PIT-IND","GB-PHI","BAL-JAC","CHI-NYJ","DEN-CAR","CIN-TEN","HOU-MIA","NE-MIN","NYG-DAL","BUF-DET"],
-        /*13*/["NO-TB","SEA-LAR","KC-CIN","MIA-SF","IND-DAL","LAC-LV","NYJ-MIN","WAS-NYG","PIT-ATL","DEN-BAL","TEN-PHI","GB-CHI","JAC-DET","CLE-HOU","BUF-NE"],
-        /*14*/["TB-SF","NYJ-BUF","KC-DEN","CAR-SEA","PHI-NYG","JAC-TEN","MIN-DET","LV-LAR","NE-ARI","HOU-DAL","CLE-CIN","BAL-PIT","MIA-LAC"],
-        /*15*/["IND-MIN","BAL-CLE","ATL-NO","MIA-BUF","NYG-WAS","DAL-JAC","DET-NYJ","TEN-LAC","CIN-TB","ARI-DEN","SF-SEA","LAR-GB","NE-LV","PHI-CHI","KC-HOU","PIT-CAR"],
-        /*16*/["LAC-IND","TB-ARI","PHI-DAL","DET-CAR","GB-MIA","WAS-SF","HOU-TEN","BUF-CHI","CIN-NE","ATL-BAL","NO-CLE","LV-PIT","SEA-KC","NYG-MIN","DEN-LAR","JAC-NYJ"],
-        /*17*/["MIN-GB","CHI-DET","ARI-ATL","BUF-CIN","LAR-LAC","NYJ-SEA","SF-LV","PIT-BAL","DEN-KC","CLE-WAS","DAL-TEN","CAR-TB","IND-NYG","NO-PHI","MIA-NE","JAC-HOU"],
+        /*1*/["BUF-LAR","NE-MIA","CLE-CAR","JAC-WAS","PIT-CIN","NO-ATL","PHI-DET","SF-CHI","IND-HOU","BAL-NYJ","KC-ARI","GB-MIN","NYG-TEN","LV-LAC","TB-DAL","DEN-SEA"],
+        /*2*/["LAC-KC","NYJ-CLE","WAS-DET","IND-JAC","MIA-BAL","TB-NO","NE-PIT","CAR-NYG","ATL-LAR","SEA-SF","CIN-DAL","ARI-LV","HOU-DEN","CHI-GB","TEN-BUF","MIN-PHI"],
+        /*3*/["PIT-CLE","DET-MIN","NO-CAR","HOU-CHI","PHI-WAS","BUF-MIA","CIN-NYJ","BAL-NE","LV-TEN","KC-IND","JAC-LAC","GB-TB","ATL-SEA","LAR-ARI","SF-DEN","DAL-NYG"],
+        /*4*/["MIA-CIN","MIN-NO","BUF-BAL","WAS-DAL","TEN-IND","CLE-ATL","NYJ-PIT","JAC-PHI","CHI-NYG","LAC-HOU","SEA-DET","ARI-CAR","NE-GB","DEN-LV","KC-TB","LAR-SF"],
+        /*5*/["IND-DEN","NYG-GB","LAC-CLE","DET-NE","PIT-BUF","MIA-NYJ","ATL-TB","SEA-NO","HOU-JAC","TEN-WAS","CHI-MIN","SF-CAR","DAL-LAR","PHI-ARI","CIN-BAL","LV-KC"],
+        /*6*/["WAS-CHI","BAL-NYG","TB-PIT","JAC-IND","NYJ-GB","CIN-NO","MIN-MIA","SF-ATL","NE-CLE","CAR-LAR","ARI-SEA","BUF-KC","DAL-PHI","DEN-LAC"],
+        /*7*/["NO-ARI","IND-TEN","NYG-JAC","GB-WAS","DET-DAL","ATL-CIN","CLE-BAL","TB-CAR","NYJ-DEN","HOU-LV","SEA-LAC","KC-SF","PIT-MIA","CHI-NE"],
+        /*8*/["BAL-TB","DEN-JAC","NE-NYJ","CHI-DAL","PIT-PHI","CAR-ATL","LV-NO","MIA-DET","ARI-MIN","TEN-HOU","NYG-SEA","WAS-IND","SF-LAR","GB-BUF","CIN-CLE"],
+        /*9*/["PHI-HOU","MIN-WAS","CAR-CIN","LAC-ATL","BUF-NYJ","IND-NE","LV-JAC","MIA-CHI","GB-DET","SEA-ARI","LAR-TB","TEN-KC","BAL-NO"],
+        /*10*/["ATL-CAR","SEA-TB","NO-PIT","DEN-TEN","HOU-NYG","DET-CHI","CLE-MIA","JAC-KC","MIN-BUF","IND-LV","DAL-GB","ARI-LAR","LAC-SF","WAS-PHI"],
+        /*11*/["TEN-GB","CHI-ATL","WAS-HOU","NYJ-NE","PHI-IND","LAR-NO","DET-NYG","CAR-BAL","CLE-BUF","LV-DEN","DAL-MIN","KC-LAC","CIN-PIT","SF-ARI"],
+        /*12*/["BUF-DET","NYG-DAL","NE-MIN","TB-CLE","ATL-WAS","BAL-JAC","CHI-NYJ","DEN-CAR","CIN-TEN","HOU-MIA","LV-SEA","LAC-ARI","LAR-KC","NO-SF","GB-PHI","PIT-IND"],
+        /*13*/["BUF-NE","NYJ-MIN","WAS-NYG","PIT-ATL","DEN-BAL","TEN-PHI","GB-CHI","JAC-DET","CLE-HOU","SEA-LAR","MIA-SF","KC-CIN","LAC-LV","IND-DAL","NO-TB"],
+        /*14*/["LV-LAR","NYJ-BUF","PHI-NYG","JAC-TEN","MIN-DET","HOU-DAL","CLE-CIN","BAL-PIT","MIA-LAC","TB-SF","CAR-SEA","KC-DEN","NE-ARI"],
+        /*15*/["SF-SEA","IND-MIN","BAL-CLE","ATL-NO","MIA-BUF","NYG-WAS","DAL-JAC","DET-NYJ","PHI-CHI","KC-HOU","PIT-CAR","ARI-DEN","TEN-LAC","CIN-TB","NE-LV","LAR-GB"],
+        /*16*/["JAC-NYJ","DET-CAR","HOU-TEN","BUF-CHI","CIN-NE","ATL-BAL","NO-CLE","SEA-KC","NYG-MIN","WAS-SF","PHI-DAL","LV-PIT","GB-MIA","DEN-LAR","TB-ARI","LAC-IND"],
+        /*17*/["DAL-TEN","CHI-DET","ARI-ATL","PIT-BAL","DEN-KC","CLE-WAS","CAR-TB","IND-NYG","NO-PHI","MIA-NE","JAC-HOU","NYJ-SEA","SF-LV","MIN-GB","LAR-LAC","BUF-CIN"],
         /*18*/["TB-ATL","NE-BUF","CAR-NO","BAL-CIN","MIN-CHI","TEN-JAC","DET-GB","CLE-PIT","ARI-SF","NYG-PHI","LAC-DEN","KC-LV","DAL-WAS","LAR-SEA","NYJ-MIA","HOU-IND"]
     ],
     team_week_lists = {},
     game_list = [],
     game_list_len = 272,
     day_codes =
-      "T            NMM"  //01
-    + "T             NM"  //02
+      "T             NM"  //01
+    + "T            NMM"  //02
     + "T             NM"  //03
-    + "TU           NM"    //04
-    + "T           NM"  //05
+    + "T             NM"    //04
+    + "T             NM"  //05
     + "T           NM"  //06
-    + "TU          NM"  //07
-    + "TU          NM"  //08
+    + "T           NM"  //07
+    + "T            NM"  //08
     + "T          NM"    //09
     + "T           NM"    //10
     + "T           NM"   //11
-    + "T             NM"  //12
-    + "T             NM" //13
-    + "T             NM" //14
-    + "TZ            NM" //15
-    + "TZ            NM" //16
-    + "                " //17
+    + "TTT           NM"  //12
+    + "T            NM" //13
+    + "T          NM" //14
+    + "TZZZZZ        NM" //15
+    + "TZZZZZZZZZZZ  NM" //16
+    + "T             NM" //17
+    + "                " //18
     ,day_explaination = { T: "Thursday game", N: "Sunday Night game", M: "Monday Night game", U: "@ London, UK", C: "@ Toronto, Canada", " ": "Sunday game", Z:"Saturday game" },
     bye_lookup = {
-        5: "DET TEN LV HOU",
-        6: "BUF LAR MIN PHI",
-        7: "KC LAC",
-        8: "CLE DAL DEN NYG PIT SF",
-        9: "CIN NE NYJ BAL",
-        11: "ARI CAR",
-        12: "ATL CHI GB IND NO WAS"
+        6: "DET TEN LV HOU",
+        7: "BUF LAR MIN PHI",
+        8: "KC LAC",
+        9: "CLE DAL DEN NYG PIT SF",
+        10: "BAL CLE NE NYJ",
+        11: "JAC MIA SEA TB",
+        13: "ARI CAR",
+        14: "ATL CHI GB IND NO WAS"
     },
     foe_lookup =
     {
@@ -404,7 +406,6 @@ function clear_data() {
 }
 
 function set_games_from_string(b) {
-    console.log('b', b)
     if (b.match(cookie64_re) === null) {
         alert("Game data is corrupt, sorry. :(");
         clear_data(); return
@@ -1069,7 +1070,7 @@ function team_header(b) {
 }
 
 function make_team_game_tables(a) {
-    return team_game_table(1, 6, a) + table_divider + team_game_table(7, 12, a) + table_divider + team_game_table(13, 17, a)
+    return team_game_table(1, 6, a) + table_divider + team_game_table(7, 12, a) + table_divider + team_game_table(13, 18, a)
 }
 
 function week_game_table(g, b) {
@@ -1089,6 +1090,8 @@ function week_game_table(g, b) {
     for (h = 0; h < d; h++) {
         i = b[h];
         e = game_buttons(i);
+        console.log('game_position[i]', game_position[i])
+        console.log('day_codes[game_position[i]]', day_codes[game_position[i]])
         switch (day_codes[game_position[i]]) {
             case "T":
                 j += e;
@@ -1189,7 +1192,6 @@ function markdownExport() {
         sb.push("#" + conferenceLogo + conferenceName+"\n\n");
         sb.push("Rank | Team | W | L | T\n");
         sb.push("-|-|-:|-:|-:|\n");
-        console.log('conferenceRankingObject', conferenceRankingObject)
         for (var placement in conferenceRankingObject[conference].placements) {
             /* AFC
              *  1   |   KC  |  8 |  8   |   0   |
