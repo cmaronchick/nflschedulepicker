@@ -18,7 +18,7 @@ function set_game_cookie(c, a) {
     } set_visible_cookie(b)
 }
 function set_visible_cookie(a) {
-    document.getElementById("save_string").innerHTML = "http://0003mg.github.io/nflschedulepicker/?a=" + a
+    document.getElementById("save_string").innerHTML = "http://stakehousesports.com/nflschedulepicker/?a=" + a
 }
 function getCookie(b) {
     var c, a, e, d = document.cookie.split(";");
@@ -38,125 +38,127 @@ var games_cookie_name = "NFL2023",
     base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_",
     number_of_weeks = 18,
     week_lists = [
-        /*1*/["PIT-NE", "GB-CHI", "KC-HOU", "CLE-NYJ", "IND-BUF", "MIA-WAS", "CAR-JAC", "SEA-LAR", "NO-ARI", "DET-LAC", "TEN-TB", "CIN-LV", "BAL-DEN", "NYG-DAL", "PHI-ATL", "MIN-SF"],
-        /*2*/["DEN-KC", "HOU-CAR", "SF-PIT", "TB-NO", "DET-MIN", "ARI-CHI", "NE-BUF", "LAC-CIN", "TEN-CLE", "ATL-NYG", "LAR-WAS", "MIA-JAC", "BAL-LV", "DAL-PHI", "SEA-GB", "NYJ-IND"],
-        /*3*/["WAS-NYG", "ATL-DAL", "IND-TEN", "LV-CLE", "CIN-BAL", 'JAC-NE', 'NO-CAR', 'PHI-NYJ', 'TB-HOU', 'LAC-MIN', 'PIT-LAR', 'SF-ARI', 'BUF-MIA', 'CHI-SEA', 'DEN-DET', 'KC-GB'],
-        /*4*/['BAL-PIT', 'NYJ-MIA', 'JAC-IND', 'NYG-BUF', 'CAR-TB', 'PHI-WAS', 'LV-CHI', 'HOU-ATL', 'KC-CIN', 'CLE-LAC', 'GB-SF', 'LAR-ARI', 'MIN-DEN', 'DAL-NO', 'DET-SEA'],
-        /*5*/['IND-HOU', 'CHI-KC', 'SEA-CIN', 'WAS-ATL', 'JAC-TB', 'NO-PHI', 'CLE-BAL', 'LAR-GB', 'BUF-TEN', 'ARI-DET', 'NE-DAL', 'DEN-LV', 'SF-NYG', 'PIT-LAC'],
-        /*6*/['ATL-NO', 'WAS-NYJ', 'ARI-PIT', 'KC-MIN', 'CIN-BUF', 'CHI-DET', 'DEN-CLE', 'HOU-JAC', 'MIA-TEN', 'CAR-SEA', 'LAC-GB', 'BAL-SF', 'NE-IND', 'NYG-PHI'],
-        /*7*/['SEA-SF', 'BUF-JAC', 'TB-WAS', 'ATL-TEN', 'NO-IND', 'MIN-DET', 'PIT-KC', 'CLE-LAR', 'HOU-MIA', 'NYJ-NE', 'LV-LAC', 'DAL-NYG', 'PHI-CAR', 'BAL-ARI'],
-        /*8*/['MIA-NE', 'DET-KC', 'TB-ATL', 'ARI-CLE', 'SF-LAR', 'NYG-NO', 'MIN-CHI', 'LAC-BAL', 'CIN-PIT', 'TEN-HOU', 'NYJ-LV', 'SEA-DAL', 'GB-DEN', 'IND-CAR'],
-        /*9*/['CLE-CIN', 'GB-CAR', 'WAS-NE', 'TEN-NO', 'MIA-BUF', 'LAR-MIN', 'JAC-NYJ', 'LV-PIT', 'NYG-TB', 'ATL-SF', 'DEN-IND', 'PHI-DAL', 'CHI-LAC'],
-        /*10*/['BUF-NYJ', 'DET-GB', 'DAL-TB', 'CAR-TEN', 'CHI-LAR', 'NO-WAS', 'MIA-PHI', 'CLE-PIT', 'JAC-BAL', 'MIN-LV', 'NE-NYG', 'KC-DEN', 'ARI-SEA', 'HOU-CIN'],
-        /*11*/['TEN-JAC', 'LV-DET', 'IND-ATL', 'NYJ-HOU', 'TB-PHI', 'DEN-CHI', 'GB-MIN', 'LAR-BAL', 'DAL-MIA', 'WAS-CAR', 'CIN-ARI', 'SF-SEA', 'KC-LAC', 'BUF-NE'],
-        /*12*/['PHI-DET', 'CAR-DAL', 'CHI-GB', 'NO-HOU', 'LAR-CIN', 'MIN-ATL', 'NYG-WAS', 'TB-IND', 'BUF-KC', 'LV-TEN', 'LAC-JAC', 'MIA-NYJ', 'ARI-SF', 'PIT-SEA', 'NE-DEN', 'BAL-CLE'],
-        /*13*/['GB-DET', 'NYJ-NYG', 'ARI-LAR', 'ATL-TB', 'CAR-NO', 'SEA-MIN', 'HOU-BUF', 'BAL-MIA', 'CIN-CLE', 'JAC-TEN', 'SF-CHI', 'DEN-LAC', 'KC-LV', 'PHI-NE', 'IND-PIT', 'DAL-WAS'],
-        /*14*/['MIN-ARI', 'BUF-PHI', 'SF-CLE', 'DET-LAR', 'NO-TB', 'TEN-NYJ', 'PIT-CIN', 'NE-HOU', 'IND-JAC', 'LAC-KC', 'WAS-CHI', 'ATL-CAR', 'LV-DEN', 'DAL-GB', 'SEA-BAL', 'NYG-MIA'],
-        /*15*/['TB-LAR', 'NYJ-DAL', 'CHI-MIN', 'ATL-JAC', 'HOU-IND', 'ARI-PHI', 'CAR-NYG', 'TEN-NE', 'BUF-WAS', 'KC-BAL', 'CLE-SEA', 'GB-LV', 'DEN-PIT', 'MIA-LAC', 'CIN-SF', 'DET-NO'],
-        /*16*/['LAC-LV', 'WAS-PHI', 'NE-NYJ', 'HOU-TEN', 'CLE-KC', 'IND-MIA', 'JAC-NO', 'SF-DET', 'DAL-BUF', 'CHI-TB', 'CAR-ATL', 'NYG-MIN', 'LAR-SEA', 'GB-ARI', 'PIT-BAL', 'CIN-DEN'],
-        /*17*/['NYJ-BUF', 'NE-MIA',' TB-CAR', 'NO-ATL', 'BAL-CIN', 'PIT-CLE', 'JAC-HOU', 'TEN-IND', 'LV-KC', 'WAS-DAL', 'PHI-NYG', 'DET-CHI', 'MIN-GB', 'LAC-DEN', 'SEA-ARI', 'LAR-SF'],
-        /*18*/['NYJ-BUF', 'NE-MIA',' TB-CAR', 'NO-ATL', 'BAL-CIN', 'PIT-CLE', 'JAC-HOU', 'TEN-IND', 'LV-KC', 'WAS-DAL', 'PHI-NYG', 'DET-CHI', 'MIN-GB', 'LAC-DEN', 'SEA-ARI', 'LAR-SF']
+        /*1*/["BUF-LAR","NE-MIA","CLE-CAR","JAC-WAS","PIT-CIN","NO-ATL","PHI-DET","SF-CHI","IND-HOU","BAL-NYJ","KC-ARI","GB-MIN","NYG-TEN","LV-LAC","TB-DAL","DEN-SEA"],
+        /*2*/["LAC-KC","NYJ-CLE","WAS-DET","IND-JAC","MIA-BAL","TB-NO","NE-PIT","CAR-NYG","ATL-LAR","SEA-SF","CIN-DAL","ARI-LV","HOU-DEN","CHI-GB","TEN-BUF","MIN-PHI"],
+        /*3*/["PIT-CLE","DET-MIN","NO-CAR","HOU-CHI","PHI-WAS","BUF-MIA","CIN-NYJ","BAL-NE","LV-TEN","KC-IND","JAC-LAC","GB-TB","ATL-SEA","LAR-ARI","SF-DEN","DAL-NYG"],
+        /*4*/["MIA-CIN","MIN-NO","BUF-BAL","WAS-DAL","TEN-IND","CLE-ATL","NYJ-PIT","JAC-PHI","CHI-NYG","LAC-HOU","SEA-DET","ARI-CAR","NE-GB","DEN-LV","KC-TB","LAR-SF"],
+        /*5*/["IND-DEN","NYG-GB","LAC-CLE","DET-NE","PIT-BUF","MIA-NYJ","ATL-TB","SEA-NO","HOU-JAC","TEN-WAS","CHI-MIN","SF-CAR","DAL-LAR","PHI-ARI","CIN-BAL","LV-KC"],
+        /*6*/["WAS-CHI","BAL-NYG","TB-PIT","JAC-IND","NYJ-GB","CIN-NO","MIN-MIA","SF-ATL","NE-CLE","CAR-LAR","ARI-SEA","BUF-KC","DAL-PHI","DEN-LAC"],
+        /*7*/["NO-ARI","IND-TEN","NYG-JAC","GB-WAS","DET-DAL","ATL-CIN","CLE-BAL","TB-CAR","NYJ-DEN","HOU-LV","SEA-LAC","KC-SF","PIT-MIA","CHI-NE"],
+        /*8*/["BAL-TB","DEN-JAC","NE-NYJ","CHI-DAL","PIT-PHI","CAR-ATL","LV-NO","MIA-DET","ARI-MIN","TEN-HOU","NYG-SEA","WAS-IND","SF-LAR","GB-BUF","CIN-CLE"],
+        /*9*/["PHI-HOU","MIN-WAS","CAR-CIN","LAC-ATL","BUF-NYJ","IND-NE","LV-JAC","MIA-CHI","GB-DET","SEA-ARI","LAR-TB","TEN-KC","BAL-NO"],
+        /*10*/["ATL-CAR","SEA-TB","NO-PIT","DEN-TEN","HOU-NYG","DET-CHI","CLE-MIA","JAC-KC","MIN-BUF","IND-LV","DAL-GB","ARI-LAR","LAC-SF","WAS-PHI"],
+        /*11*/["TEN-GB","CHI-ATL","WAS-HOU","NYJ-NE","PHI-IND","LAR-NO","DET-NYG","CAR-BAL","CLE-BUF","LV-DEN","DAL-MIN","KC-LAC","CIN-PIT","SF-ARI"],
+        /*12*/["BUF-DET","NYG-DAL","NE-MIN","TB-CLE","ATL-WAS","BAL-JAC","CHI-NYJ","DEN-CAR","CIN-TEN","HOU-MIA","LV-SEA","LAC-ARI","LAR-KC","NO-SF","GB-PHI","PIT-IND"],
+        /*13*/["BUF-NE","NYJ-MIN","WAS-NYG","PIT-ATL","DEN-BAL","TEN-PHI","GB-CHI","JAC-DET","CLE-HOU","SEA-LAR","MIA-SF","KC-CIN","LAC-LV","IND-DAL","NO-TB"],
+        /*14*/["LV-LAR","NYJ-BUF","PHI-NYG","JAC-TEN","MIN-DET","HOU-DAL","CLE-CIN","BAL-PIT","MIA-LAC","TB-SF","CAR-SEA","KC-DEN","NE-ARI"],
+        /*15*/["SF-SEA","IND-MIN","BAL-CLE","ATL-NO","MIA-BUF","NYG-WAS","DAL-JAC","DET-NYJ","PHI-CHI","KC-HOU","PIT-CAR","ARI-DEN","TEN-LAC","CIN-TB","NE-LV","LAR-GB"],
+        /*16*/["JAC-NYJ","DET-CAR","HOU-TEN","BUF-CHI","CIN-NE","ATL-BAL","NO-CLE","SEA-KC","NYG-MIN","WAS-SF","PHI-DAL","LV-PIT","GB-MIA","DEN-LAR","TB-ARI","LAC-IND"],
+        /*17*/["DAL-TEN","CHI-DET","ARI-ATL","PIT-BAL","DEN-KC","CLE-WAS","CAR-TB","IND-NYG","NO-PHI","MIA-NE","JAC-HOU","NYJ-SEA","SF-LV","MIN-GB","LAR-LAC","BUF-CIN"],
+        /*18*/["TB-ATL","NE-BUF","CAR-NO","BAL-CIN","MIN-CHI","TEN-JAC","DET-GB","CLE-PIT","ARI-SF","NYG-PHI","LAC-DEN","KC-LV","DAL-WAS","LAR-SEA","NYJ-MIA","HOU-IND"]
     ],
     team_week_lists = {},
     game_list = [],
     game_list_len = 272,
     day_codes =
-      "T            NMM"  //01
-    + "T             NM"  //02
+      "T             NM"  //01
+    + "T            NMM"  //02
     + "T             NM"  //03
-    + "TU           NM"    //04
-    + "T           NM"  //05
+    + "T             NM"    //04
+    + "T             NM"  //05
     + "T           NM"  //06
-    + "TU          NM"  //07
-    + "TU          NM"  //08
+    + "T           NM"  //07
+    + "T            NM"  //08
     + "T          NM"    //09
     + "T           NM"    //10
     + "T           NM"   //11
-    + "T             NM"  //12
-    + "T             NM" //13
-    + "T             NM" //14
-    + "TZ            NM" //15
-    + "TZ            NM" //16
-    + "                " //17
-    ,day_explaination = { T: "ThurLACay game", N: "Sunday Night game", M: "Monday Night game", U: "@ London, UK", C: "@ Toronto, Canada", " ": "Sunday game", Z:"Saturday game" },
+    + "TTT           NM"  //12
+    + "T            NM" //13
+    + "T          NM" //14
+    + "TZZZZZ        NM" //15
+    + "TZZZZZZZZZZZ  NM" //16
+    + "T             NM" //17
+    + "                " //18
+    ,day_explaination = { T: "Thursday game", N: "Sunday Night game", M: "Monday Night game", U: "@ London, UK", C: "@ Toronto, Canada", " ": "Sunday game", Z:"Saturday game" },
     bye_lookup = {
-        5: "DET TEN LV HOU",
-        6: "BUF LAR MIN PHI",
-        7: "KC LAC",
-        8: "CLE DAL DEN NYG PIT SF",
-        9: "CIN NE NYJ BAL",
-        11: "ARI CAR",
-        12: "ATL CHI GB IND NO WAS"
+        6: "DET TEN LV HOU",
+        7: "BUF LAR MIN PHI",
+        8: "KC LAC",
+        9: "CLE DAL DEN NYG PIT SF",
+        10: "BAL CLE NE NYJ",
+        11: "JAC MIA SEA TB",
+        13: "ARI CAR",
+        14: "ATL CHI GB IND NO WAS"
     },
     foe_lookup =
     {
-        ARI: ['NO', 'CHI', 'SF', 'LAR', 'DET', 'PIT', 'BAL', 'CLE', 'SEA', 'CIN', 'SF', 'LAR', 'MIN', 'PHI', 'GB', 'SEA'],
-        ATL: ['PHI', 'NYG', 'DAL', 'HOU', 'WAS', 'NO', 'TEN', 'TB', 'SF', 'IND', 'MIN', 'TB', 'CAR', 'JAC', 'CAR', 'NO'],
-        BAL: ['DEN', 'LV', 'CIN', 'PIT', 'CLE', 'SF', 'ARI', 'LAC', 'JAC', 'LAR', 'CLE', 'MIA', 'SEA', 'KC', 'PIT', 'CIN'],
-        BUF: ['IND', 'NE', 'MIA', 'NYG', 'TEN', 'CIN', 'JAC', 'MIA', 'NYJ', 'NE', 'KC', 'HOU', 'PHI', 'WAS', 'DAL', 'NYJ'],
-        CAR: ['JAC', 'HOU', 'NO', 'TB', 'SEA', 'PHI', 'IND', 'GB', 'TEN', 'WAS', 'DAL', 'NO', 'ATL', 'NYG', 'ATL', ' TB'],
-        CHI: ['GB', 'ARI', 'SEA', 'LV', 'KC', 'DET', 'MIN', 'LAC', 'LAR', 'DEN', 'GB', 'SF', 'WAS', 'MIN', 'TB', 'DET'],
-        CIN: ['LV', 'LAC', 'BAL', 'KC', 'SEA', 'BUF', 'PIT', 'CLE', 'HOU', 'ARI', 'LAR', 'CLE', 'PIT', 'SF', 'DEN', 'BAL'],
-        CLE: ['NYJ', 'TEN', 'LV', 'LAC', 'BAL', 'DEN', 'LAR', 'ARI', 'CIN', 'PIT', 'BAL', 'CIN', 'SF', 'SEA', 'KC', 'PIT'],
-        DAL: ['NYG', 'PHI', 'ATL', 'NO', 'NE', 'NYG', 'SEA', 'PHI', 'TB', 'MIA', 'CAR', 'WAS', 'GB', 'NYJ', 'BUF', 'WAS'],
-        DEN: ['BAL', 'KC', 'DET', 'MIN', 'LV', 'CLE', 'GB', 'IND', 'KC', 'CHI', 'NE', 'LAC', 'LV', 'PIT', 'CIN', 'LAC'],
-        DET: ['LAC', 'MIN', 'DEN', 'SEA', 'ARI', 'CHI', 'MIN', 'KC', 'GB', 'LV', 'PHI', 'GB', 'LAR', 'NO', 'SF', 'CHI'],
-        GB: ['CHI', 'SEA', 'KC', 'SF', 'LAR', 'LAC', 'DEN', 'CAR', 'DET', 'MIN', 'CHI', 'DET', 'DAL', 'LV', 'ARI', 'MIN'],
-        HOU: ['KC', 'CAR', 'TB', 'ATL', 'IND', 'JAC', 'MIA', 'TEN', 'CIN', 'NYJ', 'NO', 'BUF', 'NE', 'IND', 'TEN', 'JAC'],
-        IND: ['BUF', 'NYJ', 'TEN', 'JAC', 'HOU', 'NE', 'NO', 'CAR', 'DEN', 'ATL', 'TB', 'PIT', 'JAC', 'HOU', 'MIA', 'TEN'],
-        JAC: ['CAR', 'MIA', 'NE', 'IND', 'TB', 'HOU', 'BUF', 'NYJ', 'BAL', 'TEN', 'LAC', 'TEN', 'IND', 'ATL', 'NO', 'HOU'],
-        KC: ['HOU', 'DEN', 'GB', 'CIN', 'CHI', 'MIN', 'PIT', 'DET', 'DEN', 'LAC', 'BUF', 'LV', 'LAC', 'BAL', 'CLE', 'LV'],
-        MIA: ['WAS', 'JAC', 'BUF', 'NYJ', 'TEN', 'HOU', 'NE', 'BUF', 'PHI', 'DAL', 'NYJ', 'BAL', 'NYG', 'LAC', 'IND', 'NE'],
-        MIN: ['SF', 'DET', 'LAC', 'DEN', 'KC', 'DET', 'CHI', 'LAR', 'LV', 'GB', 'ATL', 'SEA', 'ARI', 'CHI', 'NYG', 'GB'],
-        NE: ['PIT', 'BUF', 'JAC', 'DAL', 'IND', 'NYJ', 'MIA', 'WAS', 'NYG', 'BUF', 'DEN', 'PHI', 'HOU', 'TEN', 'NYJ', 'MIA'],
-        NO: ['ARI', 'TB', 'CAR', 'DAL', 'PHI', 'ATL', 'IND', 'NYG', 'TEN', 'WAS', 'HOU', 'CAR', 'TB', 'DET', 'JAC', 'ATL'],
-        NYG: ['DAL', 'ATL', 'WAS', 'BUF', 'SF', 'PHI', 'DAL', 'NO', 'TB', 'NE', 'WAS', 'NYJ', 'MIA', 'CAR', 'MIN', 'PHI'],
-        NYJ: ['CLE', 'IND', 'PHI', 'MIA', 'WAS', 'NE', 'LV', 'JAC', 'BUF', 'HOU', 'MIA', 'NYG', 'TEN', 'DAL', 'NE', 'BUF'],
-        LV: ['CIN', 'BAL', 'CLE', 'CHI', 'DEN', 'LAC', 'NYJ', 'PIT', 'MIN', 'DET', 'TEN', 'KC', 'DEN', 'GB', 'LAC', 'KC'],
-        PHI: ['ATL', 'DAL', 'NYJ', 'WAS', 'NO', 'NYG', 'CAR', 'DAL', 'MIA', 'TB', 'DET', 'NE', 'BUF', 'ARI', 'WAS', 'NYG'],
-        PIT: ['NE', 'SF', 'LAR', 'BAL', 'LAC', 'ARI', 'KC', 'CIN', 'LV', 'CLE', 'SEA', 'IND', 'CIN', 'DEN', 'BAL', 'CLE'],
-        LAC: ['DET', 'CIN', 'MIN', 'CLE', 'PIT', 'GB', 'LV', 'BAL', 'CHI', 'KC', 'JAC', 'DEN', 'KC', 'MIA', 'LV', 'DEN'],
-        SEA: ['LAR', 'GB', 'CHI', 'DET', 'CIN', 'CAR', 'SF', 'DAL', 'ARI', 'SF', 'PIT', 'MIN', 'BAL', 'CLE', 'LAR', 'ARI'],
-        SF: ['MIN', 'PIT', 'ARI', 'GB', 'NYG', 'BAL', 'SEA', 'LAR', 'ATL', 'SEA', 'ARI', 'CHI', 'CLE', 'CIN', 'DET', 'LAR'],
-        LAR: ['SEA', 'WAS', 'PIT', 'ARI', 'GB', 'CLE', 'SF', 'MIN', 'CHI', 'BAL', 'CIN', 'ARI', 'DET', 'TB', 'SEA', 'SF'],
-        TB: ['TEN', 'NO', 'HOU', 'CAR', 'JAC', 'WAS', 'ATL', 'NYG', 'DAL', 'PHI', 'IND', 'ATL', 'NO', 'LAR', 'CHI', 'CAR'],
-        TEN: ['TB', 'CLE', 'IND', 'BUF', 'MIA', 'ATL', 'HOU', 'NO', 'CAR', 'JAC', 'LV', 'JAC', 'NYJ', 'NE', 'HOU', 'IND'],
-        WAS: ['MIA', 'LAR', 'NYG', 'PHI', 'ATL', 'NYJ', 'TB', 'NE', 'NO', 'CAR', 'NYG', 'DAL', 'CHI', 'BUF', 'PHI', 'DAL']
+        ARI: ["KC","LV","LAR","CAR","PHI","SEA","NO","MIN","SEA","LAR","SF","LAC","NE","DEN","TB","ATL","SF"],
+        ATL: ["NO","LAR","SEA","CLE","TB","SF","CIN","CAR","LAC","CAR","CHI","WAS","PIT","NO","BAL","ARI","TB"],
+        BAL: ["NYJ","MIA","NE","BUF","CIN","NYG","CLE","TB","NO","CAR","JAC","DEN","PIT","CLE","ATL","PIT","CIN"],
+        BUF: ["LAR","TEN","MIA","BAL","PIT","KC","GB","NYJ","MIN","CLE","DET","NE","NYJ","MIA","CHI","CIN","NE"],
+        CAR: ["CLE","NYG","NO","ARI","SF","LAR","TB","ATL","CIN","ATL","BAL","DEN","SEA","PIT","DET","TB","NO"],
+        CHI: ["SF","GB","HOU","NYG","MIN","WAS","NE","DAL","MIA","DET","ATL","NYJ","GB","PHI","BUF","DET","MIN"],
+        CIN: ["PIT","DAL","NYJ","MIA","BAL","NO","ATL","CLE","CAR","PIT","TEN","KC","CLE","TB","NE","BUF","BAL"],
+        CLE: ["CAR","NYJ","PIT","ATL","LAC","NE","BAL","CIN","MIA","BUF","TB","HOU","CIN","BAL","NO","WAS","PIT"],
+        DAL: ["TB","CIN","NYG","WAS","LAR","PHI","DET","CHI","GB","MIN","NYG","IND","HOU","JAC","PHI","TEN","WAS"],
+        DEN: ["SEA","HOU","SF","LV","IND","LAC","NYJ","JAC","TEN","LV","CAR","BAL","KC","ARI","LAR","KC","LAC"],
+        DET: ["PHI","WAS","MIN","SEA","NE","DAL","MIA","GB","CHI","NYG","BUF","JAC","MIN","NYJ","CAR","CHI","GB"],
+        GB: ["MIN","CHI","TB","NE","NYG","NYJ","WAS","BUF","DET","DAL","TEN","PHI","CHI","LAR","MIA","MIN","DET"],
+        HOU: ["IND","DEN","CHI","LAC","JAC","LV","TEN","PHI","NYG","WAS","MIA","CLE","DAL","KC","TEN","JAC","IND"],
+        IND: ["HOU","JAC","KC","TEN","DEN","JAC","TEN","WAS","NE","LV","PHI","PIT","DAL","MIN","LAC","NYG","HOU"],
+        JAC: ["WAS","IND","LAC","PHI","HOU","IND","NYG","DEN","LV","KC","BAL","DET","TEN","DAL","NYJ","HOU","TEN"],
+        KC: ["ARI","LAC","IND","TB","LV","BUF","SF","TEN","JAC","LAC","LAR","CIN","DEN","HOU","SEA","DEN","LV"],
+        MIA: ["NE","BAL","BUF","CIN","NYJ","MIN","PIT","DET","CHI","CLE","HOU","SF","LAC","BUF","GB","NE","NYJ"],
+        MIN: ["GB","PHI","DET","NO","CHI","MIA","ARI","WAS","BUF","DAL","NE","NYJ","DET","IND","NYG","GB","CHI"],
+        NE: ["MIA","PIT","BAL","GB","DET","CLE","CHI","NYJ","IND","NYJ","MIN","BUF","ARI","LV","CIN","MIA","BUF"],
+        NO: ["ATL","TB","CAR","MIN","SEA","CIN","ARI","LV","BAL","PIT","LAR","SF","TB","ATL","CLE","PHI","CAR"],
+        NYG: ["TEN","CAR","DAL","CHI","GB","BAL","JAC","SEA","HOU","DET","DAL","WAS","PHI","WAS","MIN","IND","PHI"],
+        NYJ: ["BAL","CLE","CIN","PIT","MIA","GB","DEN","NE","BUF","NE","CHI","MIN","BUF","DET","JAC","SEA","MIA"],
+        LV: ["LAC","ARI","TEN","DEN","KC","HOU","NO","JAC","IND","DEN","SEA","LAC","LAR","NE","PIT","SF","KC"],
+        PHI: ["DET","MIN","WAS","JAC","ARI","DAL","PIT","HOU","WAS","IND","GB","TEN","NYG","CHI","DAL","NO","NYG"],
+        PIT: ["CIN","NE","CLE","NYJ","BUF","TB","MIA","PHI","NO","CIN","IND","ATL","BAL","CAR","LV","BAL","CLE"],
+        LAC: ["LV","KC","JAC","HOU","CLE","DEN","SEA","ATL","SF","KC","ARI","LV","MIA","TEN","IND","LAR","DEN"],
+        SEA: ["DEN","SF","ATL","DET","NO","ARI","LAC","NYG","ARI","TB","LV","LAR","CAR","SF","KC","NYJ","LAR"],
+        SF: ["CHI","SEA","DEN","LAR","CAR","ATL","KC","LAR","LAC","ARI","NO","MIA","TB","SEA","WAS","LV","ARI"],
+        LAR: ["BUF","ATL","ARI","SF","DAL","CAR","SF","TB","ARI","NO","KC","SEA","LV","GB","DEN","LAC","SEA"],
+        TB: ["DAL","NO","GB","KC","ATL","PIT","CAR","BAL","LAR","SEA","CLE","NO","SF","CIN","ARI","CAR","ATL"],
+        TEN: ["NYG","BUF","LV","IND","WAS","IND","HOU","KC","DEN","GB","CIN","PHI","JAC","LAC","HOU","DAL","JAC"],
+        WAS: ["JAC","DET","PHI","DAL","TEN","CHI","GB","IND","MIN","PHI","HOU","ATL","NYG","NYG","SF","CLE","DAL"]
     },
     foe_hash = {
-        ARI: { NO: 1, CHI: 1, SF: 1, LAR: 1, DET: 1, PIT: 1, BAL: 1, CLE: 1, SEA: 1, CIN: 1, SF: 1, LAR: 1, MIN: 1, PHI: 1, GB: 1, SEA: 1 },
-        ATL: { PHI: 1, NYG: 1, DAL: 1, HOU: 1, WAS: 1, NO: 1, TEN: 1, TB: 1, SF: 1, IND: 1, MIN: 1, TB: 1, CAR: 1, JAC: 1, CAR: 1, NO: 1 },
-        BAL: { DEN: 1, LV: 1, CIN: 1, PIT: 1, CLE: 1, SF: 1, ARI: 1, LAC: 1, JAC: 1, LAR: 1, CLE: 1, MIA: 1, SEA: 1, KC: 1, PIT: 1, CIN: 1 },
-        BUF: { IND: 1, NE: 1, MIA: 1, NYG: 1, TEN: 1, CIN: 1, JAC: 1, MIA: 1, NYJ: 1, NE: 1, KC: 1, HOU: 1, PHI: 1, WAS: 1, DAL: 1, NYJ: 1 },
-        CAR: { JAC: 1, HOU: 1, NO: 1, TB: 1, SEA: 1, PHI: 1, IND: 1, GB: 1, TEN: 1, WAS: 1, DAL: 1, NO: 1, ATL: 1, NYG: 1, ATL: 1, TB: 1 },
-        CHI: { GB: 1, ARI: 1, SEA: 1, LV: 1, KC: 1, DET: 1, MIN: 1, LAC: 1, LAR: 1, DEN: 1, GB: 1, SF: 1, WAS: 1, MIN: 1, TB: 1, DET: 1 },
-        CIN: { LV: 1, LAC: 1, BAL: 1, KC: 1, SEA: 1, BUF: 1, PIT: 1, CLE: 1, HOU: 1, ARI: 1, LAR: 1, CLE: 1, PIT: 1, SF: 1, DEN: 1, BAL: 1 },
-        CLE: { NYJ: 1, TEN: 1, LV: 1, LAC: 1, BAL: 1, DEN: 1, LAR: 1, ARI: 1, CIN: 1, PIT: 1, BAL: 1, CIN: 1, SF: 1, SEA: 1, KC: 1, PIT: 1 },
-        DAL: { NYG: 1, PHI: 1, ATL: 1, NO: 1, NE: 1, NYG: 1, SEA: 1, PHI: 1, TB: 1, MIA: 1, CAR: 1, WAS: 1, GB: 1, NYJ: 1, BUF: 1, WAS: 1 },
-        DEN: { BAL: 1, KC: 1, DET: 1, MIN: 1, LV: 1, CLE: 1, GB: 1, IND: 1, KC: 1, CHI: 1, NE: 1, LAC: 1, LV: 1, PIT: 1, CIN: 1, LAC: 1 },
-        DET: { LAC: 1, MIN: 1, DEN: 1, SEA: 1, ARI: 1, CHI: 1, MIN: 1, KC: 1, GB: 1, LV: 1, PHI: 1, GB: 1, LAR: 1, NO: 1, SF: 1, CHI: 1 },
-        GB: { CHI: 1, SEA: 1, KC: 1, SF: 1, LAR: 1, LAC: 1, DEN: 1, CAR: 1, DET: 1, MIN: 1, CHI: 1, DET: 1, DAL: 1, LV: 1, ARI: 1, MIN: 1 },
-        HOU: { KC: 1, CAR: 1, TB: 1, ATL: 1, IND: 1, JAC: 1, MIA: 1, TEN: 1, CIN: 1, NYJ: 1, NO: 1, BUF: 1, NE: 1, IND: 1, TEN: 1, JAC: 1 },
-        IND: { BUF: 1, NYJ: 1, TEN: 1, JAC: 1, HOU: 1, NE: 1, NO: 1, CAR: 1, DEN: 1, ATL: 1, TB: 1, PIT: 1, JAC: 1, HOU: 1, MIA: 1, TEN: 1 },
-        JAC: { CAR: 1, MIA: 1, NE: 1, IND: 1, TB: 1, HOU: 1, BUF: 1, NYJ: 1, BAL: 1, TEN: 1, LAC: 1, TEN: 1, IND: 1, ATL: 1, NO: 1, HOU: 1 },
-        KC: { HOU: 1, DEN: 1, GB: 1, CIN: 1, CHI: 1, MIN: 1, PIT: 1, DET: 1, DEN: 1, LAC: 1, BUF: 1, LV: 1, LAC: 1, BAL: 1, CLE: 1, LV: 1 },
-        MIA: { WAS: 1, JAC: 1, BUF: 1, NYJ: 1, TEN: 1, HOU: 1, NE: 1, BUF: 1, PHI: 1, DAL: 1, NYJ: 1, BAL: 1, NYG: 1, LAC: 1, IND: 1, NE: 1 },
-        MIN: { SF: 1, DET: 1, LAC: 1, DEN: 1, KC: 1, DET: 1, CHI: 1, LAR: 1, LV: 1, GB: 1, ATL: 1, SEA: 1, ARI: 1, CHI: 1, NYG: 1, GB: 1 },
-        NE: { PIT: 1, BUF: 1, JAC: 1, DAL: 1, IND: 1, NYJ: 1, MIA: 1, WAS: 1, NYG: 1, BUF: 1, DEN: 1, PHI: 1, HOU: 1, TEN: 1, NYJ: 1, MIA: 1 },
-        NO: { ARI: 1, TB: 1, CAR: 1, DAL: 1, PHI: 1, ATL: 1, IND: 1, NYG: 1, TEN: 1, WAS: 1, HOU: 1, CAR: 1, TB: 1, DET: 1, JAC: 1, ATL: 1 },
-        NYG: { DAL: 1, ATL: 1, WAS: 1, BUF: 1, SF: 1, PHI: 1, DAL: 1, NO: 1, TB: 1, NE: 1, WAS: 1, NYJ: 1, MIA: 1, CAR: 1, MIN: 1, PHI: 1 },
-        NYJ: { CLE: 1, IND: 1, PHI: 1, MIA: 1, WAS: 1, NE: 1, LV: 1, JAC: 1, BUF: 1, HOU: 1, MIA: 1, NYG: 1, TEN: 1, DAL: 1, NE: 1, BUF: 1 },
-        LV: { CIN: 1, BAL: 1, CLE: 1, CHI: 1, DEN: 1, LAC: 1, NYJ: 1, PIT: 1, MIN: 1, DET: 1, TEN: 1, KC: 1, DEN: 1, GB: 1, LAC: 1, KC: 1 },
-        PHI: { ATL: 1, DAL: 1, NYJ: 1, WAS: 1, NO: 1, NYG: 1, CAR: 1, DAL: 1, MIA: 1, TB: 1, DET: 1, NE: 1, BUF: 1, ARI: 1, WAS: 1, NYG: 1 },
-        PIT: { NE: 1, SF: 1, LAR: 1, BAL: 1, LAC: 1, ARI: 1, KC: 1, CIN: 1, LV: 1, CLE: 1, SEA: 1, IND: 1, CIN: 1, DEN: 1, BAL: 1, CLE: 1 },
-        LAC: { DET: 1, CIN: 1, MIN: 1, CLE: 1, PIT: 1, GB: 1, LV: 1, BAL: 1, CHI: 1, KC: 1, JAC: 1, DEN: 1, KC: 1, MIA: 1, LV: 1, DEN: 1 },
-        SEA: { LAR: 1, GB: 1, CHI: 1, DET: 1, CIN: 1, CAR: 1, SF: 1, DAL: 1, ARI: 1, SF: 1, PIT: 1, MIN: 1, BAL: 1, CLE: 1, LAR: 1, ARI: 1 },
-        SF: { MIN: 1, PIT: 1, ARI: 1, GB: 1, NYG: 1, BAL: 1, SEA: 1, LAR: 1, ATL: 1, SEA: 1, ARI: 1, CHI: 1, CLE: 1, CIN: 1, DET: 1, LAR: 1 },
-        LAR: { SEA: 1, WAS: 1, PIT: 1, ARI: 1, GB: 1, CLE: 1, SF: 1, MIN: 1, CHI: 1, BAL: 1, CIN: 1, ARI: 1, DET: 1, TB: 1, SEA: 1, SF: 1 },
-        TB: { TEN: 1, NO: 1, HOU: 1, CAR: 1, JAC: 1, WAS: 1, ATL: 1, NYG: 1, DAL: 1, PHI: 1, IND: 1, ATL: 1, NO: 1, LAR: 1, CHI: 1, CAR: 1 },
-        TEN: { TB: 1, CLE: 1, IND: 1, BUF: 1, MIA: 1, ATL: 1, HOU: 1, NO: 1, CAR: 1, JAC: 1, LV: 1, JAC: 1, NYJ: 1, NE: 1, HOU: 1, IND: 1 },
-        WAS: { MIA: 1, LAR: 1, NYG: 1, PHI: 1, ATL: 1, NYJ: 1, TB: 1, NE: 1, NO: 1, CAR: 1, NYG: 1, DAL: 1, CHI: 1, BUF: 1, PHI: 1, DAL: 1 }
-    }, unique_foes = 13,
+        ARI: { KC: 1,LV: 1,LAR: 1,CAR: 1,PHI: 1,SEA: 1,NO: 1,MIN: 1,SEA: 1,LAR: 1,SF: 1,LAC: 1,NE: 1,DEN: 1,TB: 1,ATL: 1,SF: 1 },
+        ATL: { NO: 1,LAR: 1,SEA: 1,CLE: 1,TB: 1,SF: 1,CIN: 1,CAR: 1,LAC: 1,CAR: 1,CHI: 1,WAS: 1,PIT: 1,NO: 1,BAL: 1,ARI: 1,TB: 1 },
+        BAL: { NYJ: 1,MIA: 1,NE: 1,BUF: 1,CIN: 1,NYG: 1,CLE: 1,TB: 1,NO: 1,CAR: 1,JAC: 1,DEN: 1,PIT: 1,CLE: 1,ATL: 1,PIT: 1,CIN: 1 },
+        BUF: { LAR: 1,TEN: 1,MIA: 1,BAL: 1,PIT: 1,KC: 1,GB: 1,NYJ: 1,MIN: 1,CLE: 1,DET: 1,NE: 1,NYJ: 1,MIA: 1,CHI: 1,CIN: 1,NE: 1 },
+        CAR: { CLE: 1,NYG: 1,NO: 1,ARI: 1,SF: 1,LAR: 1,TB: 1,ATL: 1,CIN: 1,ATL: 1,BAL: 1,DEN: 1,SEA: 1,PIT: 1,DET: 1,TB: 1,NO: 1 },
+        CHI: { SF: 1,GB: 1,HOU: 1,NYG: 1,MIN: 1,WAS: 1,NE: 1,DAL: 1,MIA: 1,DET: 1,ATL: 1,NYJ: 1,GB: 1,PHI: 1,BUF: 1,DET: 1,MIN: 1 },
+        CIN: { PIT: 1,DAL: 1,NYJ: 1,MIA: 1,BAL: 1,NO: 1,ATL: 1,CLE: 1,CAR: 1,PIT: 1,TEN: 1,KC: 1,CLE: 1,TB: 1,NE: 1,BUF: 1,BAL: 1 },
+        CLE: { CAR: 1,NYJ: 1,PIT: 1,ATL: 1,LAC: 1,NE: 1,BAL: 1,CIN: 1,MIA: 1,BUF: 1,TB: 1,HOU: 1,CIN: 1,BAL: 1,NO: 1,WAS: 1,PIT: 1 },
+        DAL: { TB: 1,CIN: 1,NYG: 1,WAS: 1,LAR: 1,PHI: 1,DET: 1,CHI: 1,GB: 1,MIN: 1,NYG: 1,IND: 1,HOU: 1,JAC: 1,PHI: 1,TEN: 1,WAS: 1 },
+        DEN: { SEA: 1,HOU: 1,SF: 1,LV: 1,IND: 1,LAC: 1,NYJ: 1,JAC: 1,TEN: 1,LV: 1,CAR: 1,BAL: 1,KC: 1,ARI: 1,LAR: 1,KC: 1,LAC: 1 },
+        DET: { PHI: 1,WAS: 1,MIN: 1,SEA: 1,NE: 1,DAL: 1,MIA: 1,GB: 1,CHI: 1,NYG: 1,BUF: 1,JAC: 1,MIN: 1,NYJ: 1,CAR: 1,CHI: 1,GB: 1 },
+        GB: { MIN: 1,CHI: 1,TB: 1,NE: 1,NYG: 1,NYJ: 1,WAS: 1,BUF: 1,DET: 1,DAL: 1,TEN: 1,PHI: 1,CHI: 1,LAR: 1,MIA: 1,MIN: 1,DET: 1 },
+        HOU: { IND: 1,DEN: 1,CHI: 1,LAC: 1,JAC: 1,LV: 1,TEN: 1,PHI: 1,NYG: 1,WAS: 1,MIA: 1,CLE: 1,DAL: 1,KC: 1,TEN: 1,JAC: 1,IND: 1 },
+        IND: { HOU: 1,JAC: 1,KC: 1,TEN: 1,DEN: 1,JAC: 1,TEN: 1,WAS: 1,NE: 1,LV: 1,PHI: 1,PIT: 1,DAL: 1,MIN: 1,LAC: 1,NYG: 1,HOU: 1 },
+        JAC: { WAS: 1,IND: 1,LAC: 1,PHI: 1,HOU: 1,IND: 1,NYG: 1,DEN: 1,LV: 1,KC: 1,BAL: 1,DET: 1,TEN: 1,DAL: 1,NYJ: 1,HOU: 1,TEN: 1 },
+        KC: { ARI: 1,LAC: 1,IND: 1,TB: 1,LV: 1,BUF: 1,SF: 1,TEN: 1,JAC: 1,LAC: 1,LAR: 1,CIN: 1,DEN: 1,HOU: 1,SEA: 1,DEN: 1,LV: 1 },
+        MIA: { NE: 1,BAL: 1,BUF: 1,CIN: 1,NYJ: 1,MIN: 1,PIT: 1,DET: 1,CHI: 1,CLE: 1,HOU: 1,SF: 1,LAC: 1,BUF: 1,GB: 1,NE: 1,NYJ: 1 },
+        MIN: { GB: 1,PHI: 1,DET: 1,NO: 1,CHI: 1,MIA: 1,ARI: 1,WAS: 1,BUF: 1,DAL: 1,NE: 1,NYJ: 1,DET: 1,IND: 1,NYG: 1,GB: 1,CHI: 1 },
+        NE: { MIA: 1,PIT: 1,BAL: 1,GB: 1,DET: 1,CLE: 1,CHI: 1,NYJ: 1,IND: 1,NYJ: 1,MIN: 1,BUF: 1,ARI: 1,LV: 1,CIN: 1,MIA: 1,BUF: 1 },
+        NO: { ATL: 1,TB: 1,CAR: 1,MIN: 1,SEA: 1,CIN: 1,ARI: 1,LV: 1,BAL: 1,PIT: 1,LAR: 1,SF: 1,TB: 1,ATL: 1,CLE: 1,PHI: 1,CAR: 1 },
+        NYG: { TEN: 1,CAR: 1,DAL: 1,CHI: 1,GB: 1,BAL: 1,JAC: 1,SEA: 1,HOU: 1,DET: 1,DAL: 1,WAS: 1,PHI: 1,WAS: 1,MIN: 1,IND: 1,PHI: 1 },
+        NYJ: { BAL: 1,CLE: 1,CIN: 1,PIT: 1,MIA: 1,GB: 1,DEN: 1,NE: 1,BUF: 1,NE: 1,CHI: 1,MIN: 1,BUF: 1,DET: 1,JAC: 1,SEA: 1,MIA: 1 },
+        LV: { LAC: 1,ARI: 1,TEN: 1,DEN: 1,KC: 1,HOU: 1,NO: 1,JAC: 1,IND: 1,DEN: 1,SEA: 1,LAC: 1,LAR: 1,NE: 1,PIT: 1,SF: 1,KC: 1 },
+        PHI: { DET: 1,MIN: 1,WAS: 1,JAC: 1,ARI: 1,DAL: 1,PIT: 1,HOU: 1,WAS: 1,IND: 1,GB: 1,TEN: 1,NYG: 1,CHI: 1,DAL: 1,NO: 1,NYG: 1 },
+        PIT: { CIN: 1,NE: 1,CLE: 1,NYJ: 1,BUF: 1,TB: 1,MIA: 1,PHI: 1,NO: 1,CIN: 1,IND: 1,ATL: 1,BAL: 1,CAR: 1,LV: 1,BAL: 1,CLE: 1 },
+        LAC: { LV: 1,KC: 1,JAC: 1,HOU: 1,CLE: 1,DEN: 1,SEA: 1,ATL: 1,SF: 1,KC: 1,ARI: 1,LV: 1,MIA: 1,TEN: 1,IND: 1,LAR: 1,DEN: 1 },
+        SEA: { DEN: 1,SF: 1,ATL: 1,DET: 1,NO: 1,ARI: 1,LAC: 1,NYG: 1,ARI: 1,TB: 1,LV: 1,LAR: 1,CAR: 1,SF: 1,KC: 1,NYJ: 1,LAR: 1 },
+        SF: { CHI: 1,SEA: 1,DEN: 1,LAR: 1,CAR: 1,ATL: 1,KC: 1,LAR: 1,LAC: 1,ARI: 1,NO: 1,MIA: 1,TB: 1,SEA: 1,WAS: 1,LV: 1,ARI: 1 },
+        LAR: { BUF: 1,ATL: 1,ARI: 1,SF: 1,DAL: 1,CAR: 1,SF: 1,TB: 1,ARI: 1,NO: 1,KC: 1,SEA: 1,LV: 1,GB: 1,DEN: 1,LAC: 1,SEA: 1 },
+        TB: { DAL: 1,NO: 1,GB: 1,KC: 1,ATL: 1,PIT: 1,CAR: 1,BAL: 1,LAR: 1,SEA: 1,CLE: 1,NO: 1,SF: 1,CIN: 1,ARI: 1,CAR: 1,ATL: 1 },
+        TEN: { NYG: 1,BUF: 1,LV: 1,IND: 1,WAS: 1,IND: 1,HOU: 1,KC: 1,DEN: 1,GB: 1,CIN: 1,PHI: 1,JAC: 1,LAC: 1,HOU: 1,DAL: 1,JAC: 1 },
+        WAS: { JAC: 1,DET: 1,PHI: 1,DAL: 1,TEN: 1,CHI: 1,GB: 1,IND: 1,MIN: 1,PHI: 1,HOU: 1,ATL: 1,NYG: 1,NYG: 1,SF: 1,CLE: 1,DAL: 1 }
+    }, unique_foes = 14,
     NFL_teams = ["ARI", "ATL", "BAL", "BUF", "CAR", "CHI", "CIN", "CLE", "DAL", "DEN", "DET", "GB", "HOU", "IND", "JAC", "KC", "MIA", "MIN", "NE", "NO", "NYG", "NYJ", "LV", "PHI", "PIT", "LAC", "SEA", "SF", "LAR", "TB", "TEN", "WAS"],
     NFL_teams_len = NFL_teams.length,
     division_teams = {
@@ -231,6 +233,7 @@ var games_cookie_name = "NFL2023",
         "week-15",
         "week-16",
         "week-17",
+        "week-18",
         "help",
         "BUF",
         "MIA",
@@ -403,7 +406,6 @@ function clear_data() {
 }
 
 function set_games_from_string(b) {
-    console.log('b', b)
     if (b.match(cookie64_re) === null) {
         alert("Game data is corrupt, sorry. :(");
         clear_data(); return
@@ -1068,7 +1070,7 @@ function team_header(b) {
 }
 
 function make_team_game_tables(a) {
-    return team_game_table(1, 6, a) + table_divider + team_game_table(7, 12, a) + table_divider + team_game_table(13, 17, a)
+    return team_game_table(1, 6, a) + table_divider + team_game_table(7, 12, a) + table_divider + team_game_table(13, 18, a)
 }
 
 function week_game_table(g, b) {
@@ -1088,6 +1090,8 @@ function week_game_table(g, b) {
     for (h = 0; h < d; h++) {
         i = b[h];
         e = game_buttons(i);
+        console.log('game_position[i]', game_position[i])
+        console.log('day_codes[game_position[i]]', day_codes[game_position[i]])
         switch (day_codes[game_position[i]]) {
             case "T":
                 j += e;
@@ -1188,7 +1192,6 @@ function markdownExport() {
         sb.push("#" + conferenceLogo + conferenceName+"\n\n");
         sb.push("Rank | Team | W | L | T\n");
         sb.push("-|-|-:|-:|-:|\n");
-
         for (var placement in conferenceRankingObject[conference].placements) {
             /* AFC
              *  1   |   KC  |  8 |  8   |   0   |
