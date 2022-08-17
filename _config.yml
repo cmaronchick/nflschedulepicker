@@ -1,0 +1,8 @@
+title: NFL Schedule Picker (0003mg)
+description: A Spinoff on Clinton Morell's NFL Schedule Picker
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-minimal
+
+gems:
+  - jekyll-mentions
